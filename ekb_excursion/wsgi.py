@@ -1,5 +1,5 @@
 """
-WSGI config for ekb_excursion project.
+WSGI config for ekb_exc project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ekb_excursion.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ekb_exc.settings')
 
 application = get_wsgi_application()
