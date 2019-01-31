@@ -15,16 +15,23 @@
 
 .slider {
     position: relative;
+    overflow: hidden;
+}
+
+.slider__slides-container {
+    display: flex;
+    transition: 1s;
 }
 
 .slider__button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: black;
     opacity: 0.6;
+    background: black;
     color: white;
-    padding: 50px 30px;
+    width: 40px;
+    height: 60px;
     cursor: pointer;
     transition: 0.4s;
 }
@@ -33,12 +40,14 @@
     opacity: 1;
 }
 
-.slider__button_back {
+.slider__button_prev {
     left: 0;
+    background: url("/static/img/left-arrow.svg") no-repeat center center, rgba(0, 0, 0, 0.6);
 }
 
-.slider__button_forward {
+.slider__button_next {
     right: 0;
+    background: url("/static/img/right-arrow.svg") no-repeat center center, rgba(0, 0, 0, 0.6);
 }
 
 .slider__slide {
@@ -52,6 +61,42 @@
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
+}
+
+.slider__controls-container {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slider__control {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    background: white;
+}
+
+.slider__control_active {
+    position: relative;
+    background: white;
+}
+
+.slider__control_active::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    content: '';
+    display: block;
+    border-radius: 50%;
+    width: 7px;
+    height: 7px;
+    background: black;
 }
 
 .menu {
