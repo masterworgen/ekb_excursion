@@ -9,7 +9,8 @@
     padding: 10px;
     box-sizing: border-box;
 
-    background: rgba(0, 0, 0, 0.1);
+    /*background: rgba(0, 0, 0, 0.1);*/
+    background: white;
 }
 
 .slider {
@@ -80,4 +81,29 @@
     padding: 20px 0;
     box-sizing: border-box;
     width: 100%;
+}
+
+.new {
+    /*background: rgba(0,0,0,0.4);*/
+}
+
+.new__title {
+    margin: 0;
+}
+
+.new__text {
+    margin: 0.5em 0;
+}
+
+.new__read-more-button {
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    background: lightgreen;
+    transition: 0.4s;
+}
+
+.new__read-more-button:hover {
+    background: green;
 }
