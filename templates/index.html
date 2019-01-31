@@ -6,14 +6,31 @@
     <link rel="stylesheet" href="{% static "css/styles.css" %}" />
     <title>Пеший Екатеринбург</title>
 </head>
-        {% for new in news %}
-        <p>
-            <tr>
-                <td><a href="">{{ new.header }}</a></td>
-                <td>{{ new.date_create }}</td>
-                <td>{{ new.text }}</td>
-            </tr>
-        </p>
-        {% endfor %}
+<body class="page">
+    <div class="wrapper">
+        <header class="header">
+            <div>LOGO</div>
+        </header>
+        <div class="slider">
+            <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/3049.jpeg" %}"></div>
+{#            <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/Ekaterinburg Russia 1423988876.jpg" %}"></div>#}
+{#            <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/ekb.jpg" %}"></div>#}
+{#            <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.jpg" %}"></div>#}
+{#            <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.webp" %}"></div>#}
+            <div class="slider__button slider__button_back"><</div>
+            <div class="slider__button slider__button_forward">></div>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li class="menu__item"><a class="menu__link" href="#">Новости</a></li>
+                <li class="menu__item"><a class="menu__link" href="#">Экскурции</a></li>
+                <li class="menu__item"><a class="menu__link" href="/feedback/">Отзывы</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            {% include "news.html" %}
+        </div>
+        <footer class="footer">Футер</footer>
+    </div>
 </body>
 </html>
