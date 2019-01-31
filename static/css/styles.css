@@ -1,5 +1,6 @@
 .page {
     margin: 0;
+    background: lightgreen;
 }
 
 .wrapper {
@@ -9,6 +10,47 @@
     box-sizing: border-box;
 
     background: rgba(0, 0, 0, 0.1);
+}
+
+.slider {
+    position: relative;
+}
+
+.slider__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: black;
+    opacity: 0.6;
+    color: white;
+    padding: 50px 30px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.slider__button:hover {
+    opacity: 1;
+}
+
+.slider__button_back {
+    left: 0;
+}
+
+.slider__button_forward {
+    right: 0;
+}
+
+.slider__slide {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.slider__image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
 }
 
 .menu {
