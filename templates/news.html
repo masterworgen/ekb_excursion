@@ -1,14 +1,14 @@
 <div class="news">
     <h1>Новости</h1>
-    <div class="new">
+    {% for new in news %}
+        <div class="new">
         <div class="new__headline">
-            <h2 class="new__title">Title title title title title</h2>
-            <div class="new__date">31 января 2019 в 10:31</div>
+            <h2 class="new__title">{{ new.header }}</h2>
+            <div class="new__date">{{ new.date_create }}</div>
         </div>
-        <p class="new__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper vestibulum mattis.
-            Vivamus sagittis nisl faucibus nunc rhoncus ornare. Praesent sed orci tempor, ornare leo eget, ullamcorper arcu.
-            Phasellus non lacus porta, iaculis felis ut, pulvinar ipsum. Nulla sodales rutrum eleifend.
-            Donec libero risus, sodales a lacus a, blandit congue leo. In hendrerit diam eget ullamcorper tincidunt...</p>
+        <p class="new__text">{{ new.text }}</p>
         <a class="new__read-more-button" href="#" data-id="1">Читать далее</a>
     </div>
+
+    {% endfor %}
 </div>
