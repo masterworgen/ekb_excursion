@@ -18,11 +18,6 @@
     overflow: hidden;
 }
 
-.slider__slides-container {
-    display: flex;
-    transition: 1s;
-}
-
 .slider__button {
     position: absolute;
     top: 50%;
@@ -50,10 +45,13 @@
     background: url("/static/img/right-arrow.svg") no-repeat center center, rgba(0, 0, 0, 0.6);
 }
 
+.slider__slides-container {
+    display: flex;
+}
+
 .slider__slide {
     position: relative;
     overflow: hidden;
-    height: 400px;
 }
 
 .slider__image {
