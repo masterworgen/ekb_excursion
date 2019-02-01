@@ -94,7 +94,7 @@ function Animation(params) {
     let touchId = -1;
 
     let currentAnimation;
-    let autoScroll = false;
+    let autoScroll = true;
     let autoScrollTime = 10000;
 
     /**
