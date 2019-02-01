@@ -1,5 +1,9 @@
-#
-.idea
+# jsdoc documentation
+jsdoc/
+
+
+# JetBrains IDEs
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
