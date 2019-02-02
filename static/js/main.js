@@ -15,11 +15,11 @@
  * @constructor
  */
 function Animation(params) {
-    let draw = params.draw;
-    let onStart = params.onStart;
-    let onCancel = params.onCancel;
-    let onEnd = params.onEnd;
-    let duration = params.duration;
+    const draw = params.draw;
+    const onStart = params.onStart;
+    const onCancel = params.onCancel;
+    const onEnd = params.onEnd;
+    const duration = params.duration;
 
     if (draw === undefined) {
         throw new Error("draw is undefined");
@@ -37,13 +37,14 @@ function Animation(params) {
             onStart();
         }
 
-        let startTime = performance.now();
+        const startTime = performance.now();
+        let passed = 0;
         requestAnimationFrame(function a(time) {
             if (canceled) {
                 return;
             }
 
-            let passed = time - startTime;
+            passed = time - startTime;
             if (passed > duration) {
                 passed = duration;
             }
@@ -74,11 +75,14 @@ function Animation(params) {
 
 /* Слайдер */
 (function () {
-    let slider = document.querySelector(".slider");
-    let slidesContainer = slider.querySelector(".slider__slides-container");
-    let controlsContainer = slider.querySelector(".slider__controls-container");
+    const autoScroll = true;
+    const autoScrollTime = 10000;
 
-    let slides = slider.querySelectorAll(".slider__slide");
+    const slider = document.querySelector(".slider");
+    const slidesContainer = slider.querySelector(".slider__slides-container");
+    const controlsContainer = slider.querySelector(".slider__controls-container");
+
+    const slides = slider.querySelectorAll(".slider__slide");
     let controls;
 
     let sliderWidth;
@@ -94,8 +98,6 @@ function Animation(params) {
     let touchId = -1;
 
     let currentAnimation;
-    let autoScroll = true;
-    let autoScrollTime = 10000;
 
     /**
      * Установливает слайдер на слайд n
@@ -110,18 +112,15 @@ function Animation(params) {
 
         if (currentAnimation !== undefined) {
             currentAnimation.cancel();
-            // ТУТ!
         }
 
+        const newScrollX = -sliderWidth * slideNumber;
+        const diff = newScrollX - scrollX;
         let tmpScrollX = scrollX;
-        let newScrollX = -sliderWidth * slideNumber;
-        let diff = newScrollX - scrollX;
         let duration = Math.floor(Math.abs(diff)/sliderWidth * 1000);
         if (duration > 1000) {
             duration = 1000;
         }
-
-        console.log("%cscrollX: " + scrollX + "\nnewScrollX: " + newScrollX + "\ndiff: " + diff + "\nduration: " + duration, "color: green;");
 
         currentAnimation = new Animation({
             draw: function(passedTime, duration) {
@@ -130,7 +129,6 @@ function Animation(params) {
             },
             onCancel: function () {
                 scrollX = tmpScrollX;
-                console.log("Cancel animation!");
             },
             onEnd: function () {
                 scrollX = newScrollX;
@@ -150,7 +148,6 @@ function Animation(params) {
      * Переключает слайдер на предыдущий слайд
      */
     function prevSlide() {
-        console.log("scrollX in prevSlide(): " + scrollX);
         setSlide(currentSlide - 1);
     }
 
@@ -158,7 +155,6 @@ function Animation(params) {
      * Переключает слайдер на следующий слайд
      */
     function nextSlide() {
-        console.log("scrollX in nextSlide(): " + scrollX);
         setSlide(currentSlide + 1);
     }
 
@@ -167,8 +163,8 @@ function Animation(params) {
      * @param {MouseEvent} event
      */
     function controlClick(event) {
-        let target = event.target;
-        let slideId = Number(target.dataset.slideId);
+        const target = event.target;
+        const slideId = Number(target.dataset.slideId);
         setSlide(slideId);
     }
 
@@ -195,7 +191,7 @@ function Animation(params) {
     function touchStart (event) {
         pauseSlider();
 
-        let touch = event.touches[0];
+        const touch = event.touches[0];
         touchId = touch.identifier;
         lastTouchX = touch.screenX;
         lastTouchY = touch.screenY;
@@ -206,15 +202,13 @@ function Animation(params) {
      * @param {TouchEvent} event
      */
     function touchMove(event) {
-        let touch = event.touches[0];
+        const touch = event.touches[0];
         moveX += (touch.screenX - lastTouchX);
         moveY += (touch.screenY - lastTouchX);
         lastTouchX = touch.screenX;
         lastTouchY = touch.screenY;
 
-        // if (moveX > moveY) {
-            slidesContainer.style.transform = "translate(" + Math.floor(moveX + scrollX) + "px)";
-        // }
+        slidesContainer.style.transform = "translate(" + Math.floor(moveX + scrollX) + "px)";
     }
 
     /**
@@ -222,18 +216,13 @@ function Animation(params) {
      * @param {TouchEvent} event
      */
     function touchEnd(event) {
-        console.log(moveX);
-        console.log(scrollX);
         scrollX += Math.floor(moveX);
-        console.log(scrollX);
 
         if (scrollX > 0 || scrollX < -sliderWidth * (slides.length - 1)) {
             setSlide(currentSlide)
         } else if (moveX > sliderWidth/6) {
-            console.log("%cPREV SLIDE\nscrollX: " + scrollX, "color: yellowgreen");
             prevSlide();
         } else if (moveX < -sliderWidth/6) {
-            console.log("%cNEXT SLIDE\nscrollX: " + scrollX, "color: yellowgreen");
             nextSlide();
         } else {
             setSlide(currentSlide);
@@ -252,7 +241,6 @@ function Animation(params) {
      * Устанавливает размеры слайдера и вложенных элеменов
      */
     function updateSizes() {
-        console.log("Update slider sizes");
         sliderWidth = slider.clientWidth;
         slidesContainer.style.width = (slides.length * sliderWidth) + "px";
         for (let i = 0; i < slides.length; i++) {
@@ -291,7 +279,7 @@ function Animation(params) {
         window.addEventListener("resize", function () {
             updateSizes();
 
-            let scrollX = -sliderWidth * currentSlide;
+            const scrollX = -sliderWidth * currentSlide;
             slidesContainer.style.transform = "translate(" + scrollX + "px)";
         });
         updateSizes();
