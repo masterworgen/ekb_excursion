@@ -92,9 +92,7 @@ function Animation(params) {
     let scrollX = 0;
 
     let totalMoveX = 0;
-    let totalMoveY = 0;
     let lastTouchX = -1;
-    let lastTouchY = -1;
     let touchId = -1;
 
     let currentAnimation;
@@ -219,7 +217,6 @@ function Animation(params) {
         const touch = event.touches[0];
         touchId = touch.identifier;
         lastTouchX = touch.screenX;
-        lastTouchY = touch.screenY;
     }
 
     /**
@@ -228,13 +225,11 @@ function Animation(params) {
      */
     function touchMove(event) {
         const touch = event.touches[0];
-        totalMoveX += (touch.screenX - lastTouchX);
-        totalMoveY += (touch.screenY - lastTouchX);
-
-        scrollBy(touch.screenX - lastTouchX);
-
+        const moveX = (touch.screenX - lastTouchX);
         lastTouchX = touch.screenX;
-        lastTouchY = touch.screenY;
+        totalMoveX += moveX;
+
+        scrollBy(Math.floor(moveX));
     }
 
     /**
@@ -253,9 +248,7 @@ function Animation(params) {
         }
 
         totalMoveX = 0;
-        totalMoveY = 0;
         lastTouchX = -1;
-        lastTouchY = -1;
         touchId = -1;
 
         resumeSlider();
