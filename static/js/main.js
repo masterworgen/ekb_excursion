@@ -15,6 +15,7 @@
  * @constructor
  */
 function Animation(params) {
+    "use strict";
     if (params === undefined) {
         throw new Error("Missing required parameter");
     }
@@ -79,6 +80,7 @@ function Animation(params) {
 
 /* Слайдер */
 (function () {
+    "use strict";
     const autoScroll = true;
     const autoScrollTime = 10000;
 
