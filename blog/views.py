@@ -24,6 +24,4 @@ def addNews(request):
 
 def topic(request, topic_id):
     news = Blog.objects.get(id=topic_id)
-    entries = news.entry_set.order_by('-date_added')
-    context = {'topic': topic, 'entries': entries}
-    return render(request, 'learning_logs/topic.html', context)
+    return render(request, 'post_list.html', {"news": news})

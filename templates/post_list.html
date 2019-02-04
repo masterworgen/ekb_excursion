@@ -1,17 +1,7 @@
-{% extends 'index.html' %}
-{% block content %}
-	 <p>Topic: {{ topic }}</p>
- <p>Entries:</p>
-	 <ul>
-	 {% for entry in entries %}
- <li>
-	 <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-	 <p>{{ entry.text|linebreaks }}</p>
- </li>
-	 {% empty %}
- <li>
- There are no entries for this topic yet.
- </li>
- {% endfor %}
- </ul>
-{% endblock content %}
+<div class="new">
+            <div class="new__headline">
+                <h2 class="new__title">{{ news.header }}</h2>
+                <div class="new__date">{{ news.date_create }}</div>
+            </div>
+            <p class="new__text">{{ news.text }}</p>
+</div>
