@@ -1,3 +1,21 @@
+const openPage = (function () {
+    "use strict";
+    const contentContainer = document.querySelector(".content");
+    const menuItems = document.querySelectorAll(".menu__item");
+
+    return function (url) {
+        contentContainer.innerHTML = "";
+        fetch(url)
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (body) {
+                contentContainer.innerHTML = body;
+                history.pushState(null, null, url);
+            });
+    };
+})();
+
 /**
  * @callback AnimationDrawCallback
  * @param {number} passedTime Время, прошедшее со старта анимации в миллисекундах
