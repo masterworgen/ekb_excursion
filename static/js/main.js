@@ -11,15 +11,19 @@
  * @param {Function} [params.onStart] Вызывается при старте анимации
  * @param {Function} [params.onCancel] Вызывается при отмене анимации
  * @param {Function} [params.onEnd] Вызвается при окончании анимации
- * @param {number} params.duration Длительность анимации в миллисекундах
+ * @param {number} [params.duration=1000] Длительность анимации в миллисекундах
  * @constructor
  */
 function Animation(params) {
+    if (params === undefined) {
+        throw new Error("Missing required parameter");
+    }
+
     const draw = params.draw;
     const onStart = params.onStart;
     const onCancel = params.onCancel;
     const onEnd = params.onEnd;
-    const duration = params.duration;
+    const duration = params.duration || 1000;
 
     if (draw === undefined) {
         throw new Error("draw is undefined");
