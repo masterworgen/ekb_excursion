@@ -1,3 +1,33 @@
+/**
+ * Преобразует объект params в строку параметров url. Например, {c: "hello", lang: "ru"} станет "?c=hello&lang=ru"
+ * @param {object} params Парамерты
+ * @param {string} [url=""] URL, к которому нужно добавить параметры
+ * @return {string}
+ */
+function addQueryParams(params, url) {
+    "use strict";
+    if (url === undefined) {
+        url = "";
+    }
+    
+    const paramsKeys = Object.keys(params);
+    const paramsCount = paramsKeys.length;
+    let paramsString = "";
+
+    for (let i = 0; i < paramsCount; i++) {
+        let key = paramsKeys[i];
+        let param = `${key}=${params[key]}`;
+
+        if (paramsString === "") {
+            paramsString += param;
+        } else {
+            paramsString += '&' + param;
+        }
+    }
+
+    return url + (url.includes("?") ? "&":"?") + paramsString;
+}
+
 const openPage = (function () {
     "use strict";
     const contentContainer = document.querySelector(".content");
@@ -5,7 +35,7 @@ const openPage = (function () {
 
     return function (url) {
         contentContainer.innerHTML = "";
-        fetch(url)
+        fetch(url + addQueryParams({content: true}))
             .then(function (response) {
                 return response.text();
             })
