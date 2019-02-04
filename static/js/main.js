@@ -201,7 +201,7 @@ function Animation(params) {
      * Приостанавливает автоматическую прокрутку слайдера
      */
     function pauseSlider() {
-        clearInterval(interval)
+        clearInterval(interval);
     }
 
     /**
@@ -244,7 +244,7 @@ function Animation(params) {
      */
     function touchEnd(event) {
         if (scrollX > 0 || scrollX < -sliderWidth * (slides.length - 1)) {
-            setSlide(currentSlide)
+            setSlide(currentSlide);
         } else if (totalMoveX > sliderWidth/6) {
             prevSlide();
         } else if (totalMoveX < -sliderWidth/6) {
