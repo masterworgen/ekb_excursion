@@ -22,6 +22,6 @@ def addNews(request):
         news.save()
     return HttpResponseRedirect("/")
 
-def topic(request, topic_id):
+def news(request, topic_id):
     news = Blog.objects.get(id=topic_id)
     return render(request, 'post_list.html', {"news": news})
