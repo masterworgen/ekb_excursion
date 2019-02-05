@@ -13,6 +13,26 @@
     background: white;
 }
 
+.button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 8px 16px;
+
+    border-radius: 5px;
+    border: 1px solid seagreen;
+
+    background-color: white;
+    font-family: sans-serif;
+    text-decoration: none;
+    color: seagreen;
+    transition: 0.4s;
+}
+
+.button:hover {
+    background-color: seagreen;
+    color: white;
+}
+
 .slider {
     position: relative;
     overflow: hidden;
@@ -141,17 +161,4 @@
 
 .new__text {
     margin: 0.5em 0;
-}
-
-.new__read-more-button {
-    display: inline-block;
-    color: black;
-    text-decoration: none;
-    padding: 10px;
-    background: lightgreen;
-    transition: 0.4s;
-}
-
-.new__read-more-button:hover {
-    background: green;
 }
