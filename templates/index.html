@@ -32,7 +32,9 @@
             </ul>
         </nav>
         <div class="content">
-            {% include "news.html" %}
+            {% if template %}
+                {% include template %}
+            {% endif %}
         </div>
         <footer class="footer">Футер</footer>
     </div>

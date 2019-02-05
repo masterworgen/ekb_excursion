@@ -21,6 +21,7 @@ from blog import views
 urlpatterns = [
     path('', views.index, name='home'),
     path('admin/', admin.site.urls),
+    path('news/', views.news),
     path('feedback/', views.feedback),
     url(r'^topics/$', views.index, name='topics'),
     url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
