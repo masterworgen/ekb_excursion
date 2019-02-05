@@ -1,16 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.models import Blog
 
 
-# Create your views here.
+def get_response(request, template, params):
+    if request.method == "GET":
+        if "content" in request.GET and request.GET["content"]:
+            return render(request, template, params)
+        else:
+            params["template"] = template
+            return render(request, "index.html", params)
+
+
 def index(request):
-    news = Blog.objects.all()
-    return render(request, "index.html", {"news": news})
+    return redirect("/news/")
+
+
+def news(request):
+    news_list = Blog.objects.all()
+    return get_response(request, "news.html", {"news": news_list})
 
 
 def feedback(request):
-    return HttpResponse("<h2>Отзывы</h2>")
+    return get_response(request, "feedback.html", {})
 
 
 def addNews(request):

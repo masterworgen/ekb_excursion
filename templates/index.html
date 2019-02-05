@@ -26,13 +26,15 @@
         </div>
         <nav>
             <ul class="menu">
-                <li class="menu__item"><a class="menu__link" href="#">Новости</a></li>
-                <li class="menu__item"><a class="menu__link" href="#">Экскурсии</a></li>
+                <li class="menu__item"><a class="menu__link" href="/news/">Новости</a></li>
+                <li class="menu__item"><a class="menu__link" href="/excursions/">Экскурсии</a></li>
                 <li class="menu__item"><a class="menu__link" href="/feedback/">Отзывы</a></li>
             </ul>
         </nav>
         <div class="content">
-            {% include "news.html" %}
+            {% if template %}
+                {% include template %}
+            {% endif %}
         </div>
         <footer class="footer">Футер</footer>
     </div>

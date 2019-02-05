@@ -1,4 +1,89 @@
 /**
+ * Преобразует объект params в строку параметров url. Например, {c: "hello", lang: "ru"} станет "?c=hello&lang=ru"
+ * @param {object} params Парамерты
+ * @param {string} [url=""] URL, к которому нужно добавить параметры
+ * @return {string}
+ */
+function addQueryParams(params, url) {
+    "use strict";
+    if (url === undefined) {
+        url = "";
+    }
+    
+    const paramsKeys = Object.keys(params);
+    const paramsCount = paramsKeys.length;
+    let paramsString = "";
+
+    for (let i = 0; i < paramsCount; i++) {
+        let key = paramsKeys[i];
+        let param = `${key}=${params[key]}`;
+
+        if (paramsString === "") {
+            paramsString += param;
+        } else {
+            paramsString += '&' + param;
+        }
+    }
+
+    return url + (url.includes("?") ? "&":"?") + paramsString;
+}
+
+const openPage = (function () {
+    "use strict";
+    const contentContainer = document.querySelector(".content");
+    const menuItems = document.querySelectorAll(".menu__item");
+
+    return function (url, addToHistory = true) {
+        contentContainer.innerHTML = "";
+        fetch(url + addQueryParams({content: true}))
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (body) {
+                contentContainer.innerHTML = body;
+
+                if (addToHistory) {
+                    history.pushState(null, null, url);
+                }
+            });
+    };
+})();
+
+// Навигация
+(function () {
+    "use strict";
+    let menuLinks = document.querySelectorAll(".menu__link");
+
+    /**
+     * Обрабатывает событие навигации по истории
+     */
+    window.onpopstate = function () {
+        if (location.pathname !== "") {
+            openPage(location.pathname, false);
+        }
+    };
+
+    /**
+     * Обработка клика по ссылке
+     * @param {MouseEvent} event
+     */
+    function onLinkClick(event) {
+        event.preventDefault();
+        let target = event.target;
+        let url = target.href;
+
+        if (url !== "") {
+            console.log(`Opening.. ${url}`);
+            openPage(url);
+        }
+    }
+
+    for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
+        menuLinks[i].addEventListener("click", onLinkClick);
+    }
+})();
+
+/**
  * @callback AnimationDrawCallback
  * @param {number} passedTime Время, прошедшее со старта анимации в миллисекундах
  * @param {number} duration Длительность анимации в миллисекундах
