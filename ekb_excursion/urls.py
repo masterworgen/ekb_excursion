@@ -22,7 +22,6 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('admin/', admin.site.urls),
     path('news/', views.news),
-    path('feedback/', views.feedback),
-    url(r'^news/$', views.index, name='news'),
     url(r'^news/(?P<topic_id>\d+)/$', views.news, name='news'),
+    path('feedback/', views.feedback),
 ]
