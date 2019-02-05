@@ -46,6 +46,31 @@ const openPage = (function () {
     };
 })();
 
+// Навигация
+(function () {
+    "use strict";
+    let menuLinks = document.querySelectorAll(".menu__link");
+
+    /**
+     * Обработка клика по ссылке
+     * @param {MouseEvent} event
+     */
+    function onLinkClick(event) {
+        event.preventDefault();
+        let target = event.target;
+        let url = target.href;
+
+        if (url !== "") {
+            console.log(`Opening.. ${url}`);
+            openPage(url);
+        }
+    }
+
+    for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
+        menuLinks[i].addEventListener("click", onLinkClick);
+    }
+})();
+
 /**
  * @callback AnimationDrawCallback
  * @param {number} passedTime Время, прошедшее со старта анимации в миллисекундах
