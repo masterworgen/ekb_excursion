@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.models import Blog
 
@@ -13,7 +13,7 @@ def get_response(request, template, params):
 
 
 def index(request):
-    return news(request)
+    return redirect("/news/")
 
 
 def news(request):
