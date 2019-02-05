@@ -33,7 +33,7 @@ const openPage = (function () {
     const contentContainer = document.querySelector(".content");
     const menuItems = document.querySelectorAll(".menu__item");
 
-    return function (url) {
+    return function (url, addToHistory = true) {
         contentContainer.innerHTML = "";
         fetch(url + addQueryParams({content: true}))
             .then(function (response) {
@@ -41,7 +41,10 @@ const openPage = (function () {
             })
             .then(function (body) {
                 contentContainer.innerHTML = body;
-                history.pushState(null, null, url);
+
+                if (addToHistory) {
+                    history.pushState(null, null, url);
+                }
             });
     };
 })();
@@ -50,6 +53,15 @@ const openPage = (function () {
 (function () {
     "use strict";
     let menuLinks = document.querySelectorAll(".menu__link");
+
+    /**
+     * Обрабатывает событие навигации по истории
+     */
+    window.onpopstate = function () {
+        if (location.pathname !== "") {
+            openPage(location.pathname, false);
+        }
+    };
 
     /**
      * Обработка клика по ссылке
