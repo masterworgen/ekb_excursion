@@ -133,19 +133,47 @@ function Animation(params) {
 (function () {
     "use strict";
 
-    let className = "menu-container_opened";
-    let menuButton = document.querySelector(".menu-button");
-    let menuContainer = document.querySelector(".menu-container");
-    menuButton.addEventListener("click", function () {
-        let classList = menuContainer.classList;
-        if (classList.contains(className)) {
-            classList.remove(className);
-        } else {
-            classList.add(className);
-        }
-    });
+    function initMenu() {
+        let menuButton = document.querySelector(".menu-button");
+        let menuContainer = document.querySelector(".menu-container");
+        let menu = document.querySelector(".menu");
 
-     let menuLinks = document.querySelectorAll(".menu__link");
+        let menuContainerOpenedClass = "menu-container_opened";
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            let menuOpened = false;
+            let menuHeight = menu.clientHeight;
+
+            let closeMenu = function () {
+                menuContainer.style.maxHeight = "0";
+                menuContainer.classList.remove(menuContainerOpenedClass);
+            };
+
+            let openMenu = function () {
+                menuContainer.style.maxHeight = `${menuHeight}px`;
+                menuContainer.classList.add(menuContainerOpenedClass);
+            };
+
+            let toggleMenu = function () {
+                if (menuOpened) {
+                    // закрыть
+                    closeMenu();
+                } else {
+                    // открыть
+                    openMenu();
+                }
+
+                menuOpened = !menuOpened;
+            };
+
+            menuButton.addEventListener("click", toggleMenu);
+        } else {
+            menuContainer.style.maxHeight = "";
+            menuContainer.classList.remove(menuContainerOpenedClass);
+        }
+    }
+    window.addEventListener("resize", initMenu);
+    initMenu();
 
     /**
      * Обрабатывает событие навигации по истории
@@ -171,6 +199,7 @@ function Animation(params) {
         }
     }
 
+    let menuLinks = document.querySelectorAll(".menu__link");
     for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
         menuLinks[i].addEventListener("click", onLinkClick);
     }
