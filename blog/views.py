@@ -26,12 +26,12 @@ def news(request, topic_id=None):
 
 
 def feedback(request):
-    fb = Feedback(request.POST)
     if request.method == "POST":
+        fb = Feedback()
         fb.name = request.POST.get("name")
-        fb.date_create = request.POST.get("dc")
         fb.text = request.POST.get("text")
-        fb.verification = 0
-        return render(request, "feedback.html")
-    elif request.method == "GET":
-        return render(request, "feedback.html", {"form": fb})
+        fb.verification = False
+        fb.save()
+        return HttpResponseRedirect("/feedback/")
+    fb = Feedback.objects.all()
+    return get_response(request, 'feedback.html', {"fb":fb})
