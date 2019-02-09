@@ -14,20 +14,86 @@
 }
 
 .header {
+    padding: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
+}
+
+.header-main {
+    width: 15%;
 }
 
 .header__logo {
-    width: 15%;
+    flex-shrink: 0;
+    flex-grow: 0;
     max-width: 100px;
 }
 
-.header__title {
-    font-size: 1.4em;
+.menu-button {
+    display: none;
+    padding: 10px;
+    width: 26px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.6s border-radius, 0.4s background;
+}
+
+.menu-button:hover {
+    background: seagreen;
+    border-radius: 0;
+}
+
+.menu-button__line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: black;
+    transition: 0.4s;
+}
+
+.menu-button:hover .menu-button__line {
+    background: white;
+}
+
+.menu-button__line:not(:first-child) {
+    margin-top: 10px;
+}
+
+.menu {
+    padding: 0;
+    display: flex;
+}
+
+.menu__item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 1px;
+    text-align: center;
+
     font-family: sans-serif;
+
+    list-style: none;
+    transition: 0.4s;
+}
+
+.menu__item:hover {
+    background: seagreen;
+}
+
+.menu__link {
+    display: block;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+
+    color: black;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.menu__item:hover .menu__link {
+    color: white;
 }
 
 .footer {
@@ -138,43 +204,6 @@
     background: black;
 }
 
-.menu {
-    padding: 0;
-    display: flex;
-
-}
-
-.menu__item {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 1px;
-    text-align: center;
-
-    font-family: sans-serif;
-
-    list-style: none;
-    transition: 0.4s;
-}
-
-.menu__item:hover {
-    background: seagreen;
-}
-
-.menu__link {
-    display: block;
-    padding: 20px 0;
-    box-sizing: border-box;
-    width: 100%;
-
-    color: black;
-    text-decoration: none;
-    transition: 0.4s;
-}
-
-.menu__item:hover .menu__link {
-    color: white;
-}
-
 .content {
     margin: 0 10px;
 }
@@ -190,4 +219,42 @@
 
 .new__text {
     margin: 0.5em 0;
+}
+
+@media (max-width: 768px) {
+    .header {
+        display: block;
+    }
+
+    .header__logo {
+        width: 15%;
+    }
+
+    .header-main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .menu-container {
+        display: none;
+        overflow: hidden;
+        max-height: 0;
+        transition: 1s max-height;
+    }
+
+    .menu-container_opened {
+        display: block;
+        max-height: 100%;
+    }
+
+    .menu {
+        background: white;
+        flex-direction: column;
+    }
 }

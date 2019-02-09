@@ -49,40 +49,6 @@ const openPage = (function () {
     };
 })();
 
-// Навигация
-(function () {
-    "use strict";
-    let menuLinks = document.querySelectorAll(".menu__link");
-
-    /**
-     * Обрабатывает событие навигации по истории
-     */
-    window.onpopstate = function () {
-        if (location.pathname !== "") {
-            openPage(location.pathname, false);
-        }
-    };
-
-    /**
-     * Обработка клика по ссылке
-     * @param {MouseEvent} event
-     */
-    function onLinkClick(event) {
-        event.preventDefault();
-        let target = event.target;
-        let url = target.href;
-
-        if (url !== "") {
-            console.log(`Opening.. ${url}`);
-            openPage(url);
-        }
-    }
-
-    for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
-        menuLinks[i].addEventListener("click", onLinkClick);
-    }
-})();
-
 /**
  * @callback AnimationDrawCallback
  * @param {number} passedTime Время, прошедшее со старта анимации в миллисекундах
@@ -162,6 +128,53 @@ function Animation(params) {
         }
     };
 }
+
+// Навигация
+(function () {
+    "use strict";
+
+    let className = "menu-container_opened";
+    let menuButton = document.querySelector(".menu-button");
+    let menuContainer = document.querySelector(".menu-container");
+    menuButton.addEventListener("click", function () {
+        let classList = menuContainer.classList;
+        if (classList.contains(className)) {
+            classList.remove(className);
+        } else {
+            classList.add(className);
+        }
+    });
+
+     let menuLinks = document.querySelectorAll(".menu__link");
+
+    /**
+     * Обрабатывает событие навигации по истории
+     */
+    window.onpopstate = function () {
+        if (location.pathname !== "") {
+            openPage(location.pathname, false);
+        }
+    };
+
+    /**
+     * Обработка клика по ссылке
+     * @param {MouseEvent} event
+     */
+    function onLinkClick(event) {
+        event.preventDefault();
+        let target = event.target;
+        let url = target.href;
+
+        if (url !== "") {
+            console.log(`Opening.. ${url}`);
+            openPage(url);
+        }
+    }
+
+    for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
+        menuLinks[i].addEventListener("click", onLinkClick);
+    }
+})();
 
 /* Слайдер */
 (function () {
