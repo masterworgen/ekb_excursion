@@ -331,4 +331,8 @@
         background: white;
         flex-direction: column;
     }
+
+    .feedback__form {
+        width: 100%;
+    }
 }
