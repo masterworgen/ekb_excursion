@@ -1,11 +1,15 @@
 <div class="feedback">
-    <form>
-        <label>Имя: <input type="text"></label>
-        <label>
-            Текст комментария:
-            <textarea class="feedback__field"></textarea>
-        </label>
-        <input type="button" value="Отправить">
+    <h1 class="feedback__title">Отзывы</h1>
+    <form class="feedback__form form clearfix">
+        <div class="form__input input">
+            <input id="name-field" name="name" class="input__field">
+            <label for="name-field" class="input__label">Имя</label>
+        </div>
+        <div class="form__input input input_textarea">
+            <textarea id="text-field" name="name" class="input__field"></textarea>
+            <label for="text-field" class="input__label">Комментарий</label>
+        </div>
+        <div class="form__button button">Отправить</div>
     </form>
     <div>
         <h2 class="">Имя</h2>

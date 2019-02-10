@@ -1,3 +1,41 @@
+/* Ввод */
+let inputsManager = (function () {
+    "use strict";
+
+    let inputHasTextClass = "input__field_has-text";
+    let inputIsListeningClass = "input__field_is-listening";
+
+    /**
+     * Обработка ввода текста в поле ввода (input)
+     * @param event
+     */
+    function onInput(event) {
+        let field = event.target;
+        let text = field.value;
+
+        if (text.length === 0) {
+            field.classList.remove(inputHasTextClass);
+        } else {
+            field.classList.add(inputHasTextClass);
+        }
+    }
+
+    function initInputs() {
+        let inputs = document.querySelectorAll(`.input:not(${inputIsListeningClass})`);
+        for (let i = 0, inputsLength = inputs.length; i < inputsLength; i++) {
+            let field = inputs[i].querySelector(".input__field");
+
+            field.addEventListener("input", onInput);
+            field.classList.add(inputIsListeningClass);
+        }
+    }
+
+    return {
+        initInputs: initInputs
+    };
+})();
+inputsManager.initInputs();
+
 /**
  * Преобразует объект params в строку параметров url. Например, {c: "hello", lang: "ru"} станет "?c=hello&lang=ru"
  * @param {object} params Парамерты
@@ -41,6 +79,7 @@ const openPage = (function () {
             })
             .then(function (body) {
                 contentContainer.innerHTML = body;
+                inputsManager.initInputs();
 
                 if (addToHistory) {
                     history.pushState(null, null, url);
@@ -129,7 +168,7 @@ function Animation(params) {
     };
 }
 
-// Навигация
+/* Навигация */
 (function () {
     "use strict";
 

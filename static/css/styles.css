@@ -1,3 +1,9 @@
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 .page {
     margin: 0;
 }
@@ -235,6 +241,59 @@
 
 .new__text {
     margin: 0.5em 0;
+}
+
+.feedback__form {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.form__input {
+    margin-top: 20px;
+}
+
+.form__button {
+    margin-top: 20px;
+    float: right;
+}
+
+.input {
+    position: relative;
+}
+
+.input__field {
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 16px;
+    border: 1px solid lightgray;
+}
+
+.input__field:focus {
+    outline: 2px solid seagreen;
+}
+
+.input__label {
+    font-family: sans-serif;
+    position: absolute;
+    left: 8px;
+    top: 16px;
+    padding: 0 8px;
+    color: grey;
+    transition: 0.4s;
+}
+
+.input__field:focus ~ .input__label,
+.input__field_has-text ~ .input__label {
+    left: 8px;
+    top: -8px;
+    font-size: 0.8em;
+    background: white;
+    color: seagreen;
+}
+
+.input_textarea .input__field {
+    resize: vertical;
 }
 
 @media (max-width: 768px) {
