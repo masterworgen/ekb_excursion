@@ -139,6 +139,7 @@ function Animation(params) {
         let menu = document.querySelector(".menu");
 
         let menuContainerOpenedClass = "menu-container_opened";
+        let menuButtonOpenedClass = "menu-button_opened";
 
         if (window.matchMedia("(max-width: 768px)").matches) {
             let menuOpened = false;
@@ -147,11 +148,13 @@ function Animation(params) {
             let closeMenu = function () {
                 menuContainer.style.maxHeight = "0";
                 menuContainer.classList.remove(menuContainerOpenedClass);
+                menuButton.classList.remove(menuButtonOpenedClass);
             };
 
             let openMenu = function () {
                 menuContainer.style.maxHeight = `${menuHeight}px`;
                 menuContainer.classList.add(menuContainerOpenedClass);
+                menuButton.classList.add(menuButtonOpenedClass);
             };
 
             let toggleMenu = function () {
