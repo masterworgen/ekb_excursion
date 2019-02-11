@@ -247,6 +247,11 @@
     margin: 0 auto;
 }
 
+.feedback__comments {
+    width: 70%;
+    margin: 0 auto;
+}
+
 .form__input {
     margin-top: 20px;
 }
@@ -293,6 +298,26 @@
 
 .input_textarea .input__field {
     resize: vertical;
+}
+
+.comments__comment {
+    margin-top: 30px;
+}
+
+.comment {
+    font-family: sans-serif;
+}
+
+.comment__author {
+    font-weight: bold;
+}
+
+.comment__text {
+    margin: 0.8em 0;
+}
+
+.comment__date {
+    color: #aaa;
 }
 
 @media (max-width: 768px) {
