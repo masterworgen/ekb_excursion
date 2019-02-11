@@ -72,7 +72,6 @@
 }
 
 .menu-button_opened .menu-button__line:nth-child(2) {
-    transform: translateX(-100%);
     opacity: 0;
 }
 
