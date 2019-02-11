@@ -359,4 +359,8 @@
     .feedback__form {
         width: 100%;
     }
+
+    .feedback__comments {
+        width: 100%;
+    }
 }
