@@ -1,3 +1,41 @@
+/* Ввод */
+let inputsManager = (function () {
+    "use strict";
+
+    let inputHasTextClass = "input__field_has-text";
+    let inputIsListeningClass = "input__field_is-listening";
+
+    /**
+     * Обработка ввода текста в поле ввода (input)
+     * @param event
+     */
+    function onInput(event) {
+        let field = event.target;
+        let text = field.value;
+
+        if (text.length === 0) {
+            field.classList.remove(inputHasTextClass);
+        } else {
+            field.classList.add(inputHasTextClass);
+        }
+    }
+
+    function initInputs() {
+        let inputs = document.querySelectorAll(`.input:not(${inputIsListeningClass})`);
+        for (let i = 0, inputsLength = inputs.length; i < inputsLength; i++) {
+            let field = inputs[i].querySelector(".input__field");
+
+            field.addEventListener("input", onInput);
+            field.classList.add(inputIsListeningClass);
+        }
+    }
+
+    return {
+        initInputs: initInputs
+    };
+})();
+inputsManager.initInputs();
+
 /**
  * Преобразует объект params в строку параметров url. Например, {c: "hello", lang: "ru"} станет "?c=hello&lang=ru"
  * @param {object} params Парамерты
@@ -34,53 +72,19 @@ const openPage = (function () {
     const menuItems = document.querySelectorAll(".menu__item");
 
     return function (url, addToHistory = true) {
-        contentContainer.innerHTML = "";
         fetch(url + addQueryParams({content: true}))
             .then(function (response) {
                 return response.text();
             })
             .then(function (body) {
                 contentContainer.innerHTML = body;
+                inputsManager.initInputs();
 
                 if (addToHistory) {
                     history.pushState(null, null, url);
                 }
             });
     };
-})();
-
-// Навигация
-(function () {
-    "use strict";
-    let menuLinks = document.querySelectorAll(".menu__link");
-
-    /**
-     * Обрабатывает событие навигации по истории
-     */
-    window.onpopstate = function () {
-        if (location.pathname !== "") {
-            openPage(location.pathname, false);
-        }
-    };
-
-    /**
-     * Обработка клика по ссылке
-     * @param {MouseEvent} event
-     */
-    function onLinkClick(event) {
-        event.preventDefault();
-        let target = event.target;
-        let url = target.href;
-
-        if (url !== "") {
-            console.log(`Opening.. ${url}`);
-            openPage(url);
-        }
-    }
-
-    for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
-        menuLinks[i].addEventListener("click", onLinkClick);
-    }
 })();
 
 /**
@@ -162,6 +166,85 @@ function Animation(params) {
         }
     };
 }
+
+/* Навигация */
+(function () {
+    "use strict";
+
+    function initMenu() {
+        let menuButton = document.querySelector(".menu-button");
+        let menuContainer = document.querySelector(".menu-container");
+        let menu = document.querySelector(".menu");
+
+        let menuContainerOpenedClass = "menu-container_opened";
+        let menuButtonOpenedClass = "menu-button_opened";
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            let menuOpened = false;
+            let menuHeight = menu.clientHeight;
+
+            let closeMenu = function () {
+                menuContainer.style.maxHeight = "0";
+                menuContainer.classList.remove(menuContainerOpenedClass);
+                menuButton.classList.remove(menuButtonOpenedClass);
+            };
+
+            let openMenu = function () {
+                menuContainer.style.maxHeight = `${menuHeight}px`;
+                menuContainer.classList.add(menuContainerOpenedClass);
+                menuButton.classList.add(menuButtonOpenedClass);
+            };
+
+            let toggleMenu = function () {
+                if (menuOpened) {
+                    // закрыть
+                    closeMenu();
+                } else {
+                    // открыть
+                    openMenu();
+                }
+
+                menuOpened = !menuOpened;
+            };
+
+            menuButton.addEventListener("click", toggleMenu);
+        } else {
+            menuContainer.style.maxHeight = "";
+            menuContainer.classList.remove(menuContainerOpenedClass);
+        }
+    }
+    window.addEventListener("resize", initMenu);
+    initMenu();
+
+    /**
+     * Обрабатывает событие навигации по истории
+     */
+    window.onpopstate = function () {
+        if (location.pathname !== "") {
+            openPage(location.pathname, false);
+        }
+    };
+
+    /**
+     * Обработка клика по ссылке
+     * @param {MouseEvent} event
+     */
+    function onLinkClick(event) {
+        event.preventDefault();
+        let target = event.target;
+        let url = target.href;
+
+        if (url !== "") {
+            console.log(`Opening.. ${url}`);
+            openPage(url);
+        }
+    }
+
+    let menuLinks = document.querySelectorAll(".menu__link");
+    for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
+        menuLinks[i].addEventListener("click", onLinkClick);
+    }
+})();
 
 /* Слайдер */
 (function () {

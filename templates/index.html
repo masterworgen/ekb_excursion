@@ -10,8 +10,21 @@
 <body class="page">
     <div class="wrapper">
         <header class="header">
-            <img class="header__logo" src="{% static "img/logo.png" %}" alt="Логотип" width="100">
-            <span class="header__title">Пеший Екатеринбург</span>
+            <div class="header-main">
+                <img class="header-main__logo" src="{% static "img/logo.png" %}" alt="Логотип" width="100">
+                <div class="header-main__menu-button menu-button">
+                    <span class="menu-button__line"></span>
+                    <span class="menu-button__line"></span>
+                    <span class="menu-button__line"></span>
+                </div>
+            </div>
+            <nav class="menu-container">
+                <ul class="menu">
+                    <li class="menu__item"><a class="menu__link" href="/news/">Новости</a></li>
+                    <li class="menu__item"><a class="menu__link" href="/excursions/">Экскурсии</a></li>
+                    <li class="menu__item"><a class="menu__link" href="/feedback/">Отзывы</a></li>
+                </ul>
+            </nav>
         </header>
         <div class="slider">
             <div class="slider__slides-container">
@@ -25,13 +38,6 @@
             <div class="slider__button slider__button_next"></div>
             <div class="slider__controls-container"></div>
         </div>
-        <nav>
-            <ul class="menu">
-                <li class="menu__item"><a class="menu__link" href="/news/">Новости</a></li>
-                <li class="menu__item"><a class="menu__link" href="/excursions/">Экскурсии</a></li>
-                <li class="menu__item"><a class="menu__link" href="/feedback/">Отзывы</a></li>
-            </ul>
-        </nav>
         <div class="content">
             {% if template %}
                 {% include template %}

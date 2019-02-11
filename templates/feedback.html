@@ -1,20 +1,23 @@
 <div class="feedback">
-    <div>
+    <h1 class="feedback__title">Отзывы</h1>
+    <form class="feedback__form form clearfix">
+        <div class="form__input input">
+            <input id="name-field" name="name" class="input__field">
+            <label for="name-field" class="input__label">Имя</label>
+        </div>
+        <div class="form__input input input_textarea">
+            <textarea id="text-field" name="name" class="input__field"></textarea>
+            <label for="text-field" class="input__label">Комментарий</label>
+        </div>
+        <div class="form__button button">Отправить</div>
+    </form>
+    <div class="feedback__comments comments">
         {% for field in fb %}
-            {% if field.verification %}
-                <h2 class="">{{ field.name }}</h2>
-                <p class="">{{ field.text }}</p>
-                <span class="">{{ field.date_create}}</span>
-            {% endif %}
+            <div class="comments__comment comment">
+                <span class="comment__author">{{ field.name }}</span>
+                <p class="comment__text">{{ field.text }}</p>
+                <span class="comment__date">{{ field.date_create}}</span>
+            </div>
         {% endfor %}
     </div>
-    <form method="post">
-        {% csrf_token %}
-        <label>Имя: <input type="text" name="name"></label>
-        <label>
-            Текст комментария:
-                <textarea class="feedback__field" name="text"></textarea>
-        </label>
-        <input type="submit" value="Отправить">
-    </form>
 </div>
