@@ -72,7 +72,6 @@ const openPage = (function () {
     const menuItems = document.querySelectorAll(".menu__item");
 
     return function (url, addToHistory = true) {
-        contentContainer.innerHTML = "";
         fetch(url + addQueryParams({content: true}))
             .then(function (response) {
                 return response.text();
