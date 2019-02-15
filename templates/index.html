@@ -32,11 +32,11 @@
         </header>
         <div class="slider">
             <div class="slider__slides-container">
-                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/3049.jpeg" %}"></div>
-                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/Ekaterinburg Russia 1423988876.jpg" %}"></div>
-                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/ekb.jpg" %}"></div>
-                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.jpg" %}"></div>
-                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.webp" %}"></div>
+{#                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/3049.jpeg" %}"></div>#}
+{#                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/Ekaterinburg Russia 1423988876.jpg" %}"></div>#}
+{#                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/ekb.jpg" %}"></div>#}
+{#                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.jpg" %}"></div>#}
+{#                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.webp" %}"></div>#}
             </div>
             <div class="slider__button slider__button_prev"></div>
             <div class="slider__button slider__button_next"></div>
@@ -47,7 +47,24 @@
                 {% include template %}
             {% endif %}
         </div>
-        <footer class="footer">Футер</footer>
+        <footer class="footer">
+            <address class="footer__contacts contacts">
+                <div class="contacts__title">Экскурсии по Екатеринбургу</div>
+                <a href="mailto:ekb-exc@gmail.com" class="contacts__contact">ekb-exc@gmail.com</a>
+                <a href="tel:+73435553535" class="contacts__contact">+7(343)555-35-35</a>
+            </address>
+            <div class="footer__social-media social-media">
+                <a class="social-media__button social-media-button" href="https://vk.com/">
+                    <img class="social-media-button__img" alt="ВКонтаке" src="{% static "img/vk.svg" %}">
+                </a>
+                <a class="social-media__button social-media-button" href="https://t.me/">
+                    <img class="social-media-button__img" alt="Телеграм" src="{% static "img/telegram.svg" %}">
+                </a>
+                <a class="social-media__button social-media-button" href="https://facebook.com/">
+                    <img class="social-media-button__img" alt="Facebook" src="{% static "img/facebook.svg" %}">
+                </a>
+            </div>
+        </footer>
     </div>
     <script src="{% static "js/main.js" %}"></script>
 </body>

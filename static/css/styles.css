@@ -133,10 +133,6 @@
     color: white;
 }
 
-.footer {
-    padding: 16px;
-}
-
 .button {
     display: inline-block;
     cursor: pointer;
@@ -444,6 +440,36 @@
     padding-top: 56.25%;
 }
 
+.footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /*background: rgb(46, 87, 87);*/
+    background: seagreen;
+    color: white;
+    padding: 16px;
+}
+
+.contacts__title {
+    font-weight: bold;
+}
+
+.contacts__contact {
+    color: white;
+    display: block;
+    margin: 6px 0;
+}
+
+.contacts__contact:last-child {
+    margin-bottom: 0;
+}
+
+.social-media-button {
+    display: inline-block;
+}
+
 @media screen and (max-width: 768px) {
     .header {
         display: block;
@@ -516,6 +542,15 @@
 
     .excursion-header__back-button {
         display: block;
+    }
+
+    .footer {
+        flex-direction: column-reverse;
+    }
+
+    .contacts {
+        margin-top: 10px;
+        text-align: center;
     }
 }
 
