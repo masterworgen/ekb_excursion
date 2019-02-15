@@ -390,10 +390,6 @@
     flex-shrink: 1;
 }
 
-.excursions-list {
-    /*background: #3e999f;*/
-}
-
 .excursions-list__title {
     display: none;
     margin-left: 10px;
@@ -422,12 +418,8 @@
     color: white;
 }
 
-.excursions-container {
-    /*background: #6DDCBD;*/
-}
-
 .excursion {
-    padding: 10px;
+    padding: 0 10px;
     display: none;
 }
 
