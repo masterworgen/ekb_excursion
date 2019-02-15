@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('news/', views.news),
     url(r'^news/(?P<topic_id>\d+)/$', views.news, name='news'),
+    path('excursions/', views.excursions),
     path('feedback/', views.feedback),
 ]

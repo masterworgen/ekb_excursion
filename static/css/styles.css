@@ -6,6 +6,7 @@
 
 .page {
     margin: 0;
+    font-family: sans-serif;
 }
 
 .wrapper {
@@ -241,7 +242,7 @@
 }
 
 .content {
-    margin: 0 10px;
+    /*margin: 0 10px;*/
 }
 
 .new {
@@ -333,6 +334,93 @@
 
 .comment__date {
     color: #aaa;
+}
+
+.excursions {
+    margin-top: 10px;
+    display: flex;
+}
+
+.excursion-title {
+    color: seagreen;
+    font-weight: bold;
+}
+
+.excursions__list {
+    flex-basis: 30%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.excursions__container {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.excursions-list {
+    /*background: #3e999f;*/
+}
+
+.excursions-list-item {
+    cursor: pointer;
+    height: 40px;
+    padding: 10px;
+    transition: 0.4s;
+}
+
+.excursions-list-item:hover,
+.excursions-list-item_opened {
+    background: seagreen;
+}
+
+.excursions-list-item__title {
+    transition: 0.4s;
+}
+
+.excursions-list-item:hover .excursions-list-item__title,
+.excursions-list-item_opened .excursions-list-item__title {
+    color: white;
+}
+
+.excursions-container {
+    /*background: #6DDCBD;*/
+}
+
+.excursion {
+    padding: 10px;
+    display: none;
+}
+
+.excursion_opened {
+    display: block;
+}
+
+.excursion__title {
+    margin: 0;
+}
+
+.excursion__price {
+    color: #a0a0a0;
+}
+
+/* Заглушка карты */
+.excursion__map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: gainsboro;
+    transition: 0.4s;
+}
+
+.excursion__map:hover {
+    background: lightgrey;
+}
+
+.excursion__map::after {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
 }
 
 @media (max-width: 768px) {

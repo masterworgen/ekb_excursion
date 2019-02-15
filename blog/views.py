@@ -25,6 +25,10 @@ def news(request, topic_id=None):
         return get_response(request, "news_list.html", {"news_list": news_list})
 
 
+def excursions(request):
+    return get_response(request, "excursions.html", {})
+
+
 def feedback(request):
     if request.method == "POST":
         fb = Feedback()
