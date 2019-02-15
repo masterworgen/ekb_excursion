@@ -158,6 +158,12 @@
     overflow: hidden;
 }
 
+.slider::after {
+    content: '';
+    display: block;
+    padding-top: 50%;
+}
+
 .slider__button {
     position: absolute;
     top: 50%;
@@ -187,6 +193,7 @@
 
 .slider__slides-container {
     display: flex;
+    position: absolute;
 }
 
 .slider__slide {

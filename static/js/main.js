@@ -368,6 +368,7 @@ const openPage = (function () {
 
         let slidesCount = slides.length;
         if (slidesCount === 0) {
+            slider.style.display = "none";
             return;
         }
 
