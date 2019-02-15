@@ -1,10 +1,16 @@
 (function () {
     "use strict";
-    let isMobile = window.matchMedia('(max-width: 768px)');
+    let isMobile = window.matchMedia('(max-width: 768px)').matches;
+    let excursionOpened = false;
 
     window.addEventListener("resize", function () {
-        isMobile = window.matchMedia('(max-width: 768px)');
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
+        if (isMobile && excursionOpened) {
+            scrollToExcursion(false);
+        }
     });
+
+    let currentAnimation;
 
     let excursionsPage = document.querySelector(".excursions");
 
@@ -39,20 +45,51 @@
         }
     }
 
-    function scrollTo(x) {
-        excursionsPage.scrollLeft = x;
+    function scrollTo(x, animate = false) {
+        if (animate) {
+            if (currentAnimation !== undefined) {
+                currentAnimation.cancel();
+            }
+            const scrollLeft = excursionsPage.scrollLeft;
+            const maxDuration = 300;
+            const diff = x - scrollLeft;
+
+            let duration = Math.floor(Math.abs(diff) / excursionsPage.clientWidth * maxDuration);
+            if (duration > maxDuration) {
+                duration = maxDuration;
+            }
+
+            currentAnimation = new Animation({
+                draw: function (passedTime, duration) {
+                    excursionsPage.scrollLeft = scrollLeft + Math.floor(diff * passedTime / duration);
+                },
+                duration: duration
+            });
+
+            currentAnimation.start();
+        } else {
+            excursionsPage.scrollLeft = x;
+        }
     }
 
-    function scrollToList() {
-        scrollTo(0);
+    function closeExcursion() {
+        if (isMobile) {
+            scrollToList();
+        }
     }
 
-    function scrollToExcursion() {
-        scrollTo(excursionsPage.clientWidth);
+    function scrollToList(animate = true) {
+        scrollTo(0, animate);
+        excursionOpened = false;
+    }
+
+    function scrollToExcursion(animate = true) {
+        scrollTo(excursionsPage.clientWidth, animate);
+        excursionOpened = true;
     }
 
     for (let i = 0; i < backButtons.length; i++) {
-        backButtons[i].addEventListener("click", scrollToList);
+        backButtons[i].addEventListener("click", closeExcursion);
     }
 
     for (let i = 0; i < excursionsButtons.length; i++) {

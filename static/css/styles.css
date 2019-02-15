@@ -401,21 +401,6 @@
     cursor: pointer;
     height: 40px;
     padding: 10px;
-    transition: 0.4s;
-}
-
-.excursions-list-item:hover,
-.excursions-list-item_opened {
-    background: seagreen;
-}
-
-.excursions-list-item__title {
-    transition: 0.4s;
-}
-
-.excursions-list-item:hover .excursions-list-item__title,
-.excursions-list-item_opened .excursions-list-item__title {
-    color: white;
 }
 
 .excursion {
@@ -459,7 +444,7 @@
     padding-top: 56.25%;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .header {
         display: block;
     }
@@ -516,12 +501,7 @@
         display: block;
     }
 
-    .excursions-list-item_opened {
-        background: initial;
-    }
-
-    .excursions-list-item__title,
-    .excursions-list-item_opened .excursions-list-item__title {
+    .excursions-list-item__title {
         color: black;
     }
 
@@ -530,7 +510,31 @@
         align-items: center;
     }
 
+    .excursion-header__title {
+        font-size: 1.6em;
+    }
+
     .excursion-header__back-button {
         display: block;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .excursions-list-item {
+        transition: 0.4s;
+    }
+
+    .excursions-list-item:hover,
+    .excursions-list-item_opened {
+        background: seagreen;
+    }
+
+    .excursions-list-item__title {
+        transition: 0.4s;
+    }
+
+    .excursions-list-item:hover .excursions-list-item__title,
+    .excursions-list-item_opened .excursions-list-item__title {
+        color: white;
     }
 }
