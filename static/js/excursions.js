@@ -1,11 +1,11 @@
 (function () {
     "use strict";
     let isMobile = window.matchMedia('(max-width: 768px)').matches;
-    let excursionOpened = false;
+    let excursionIsVisible = false;
 
     window.addEventListener("resize", function () {
         isMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (isMobile && excursionOpened) {
+        if (isMobile && excursionIsVisible) {
             scrollToExcursion(false);
         }
     });
@@ -16,9 +16,11 @@
 
     let excursions = document.querySelectorAll(".excursion");
     let excursionOpenedClass = "excursion_opened";
+    let openedExcursion = document.querySelector("." + excursionOpenedClass);
 
     let excursionsButtons = document.querySelectorAll(".excursions-list-item");
     let excursionButtonOpenedClass = "excursions-list-item_opened";
+    let openedExcursionButton = document.querySelector("." + excursionButtonOpenedClass);
 
     let backButtons = document.querySelectorAll(".back-button");
 
@@ -30,15 +32,13 @@
 
         let excursionId = Number(clickedExcursionButton.dataset.excurtionId);
 
-        for (let i = 0; i < excursionsButtons.length; i++) {
-            excursionsButtons[i].classList.remove(excursionButtonOpenedClass);
-        }
+        openedExcursionButton.classList.remove(excursionButtonOpenedClass);
         clickedExcursionButton.classList.add(excursionButtonOpenedClass);
+        openedExcursionButton = clickedExcursionButton;
 
-        for (let i = 0; i < excursions.length; i++) {
-            excursions[i].classList.remove(excursionOpenedClass);
-        }
+        openedExcursion.classList.remove(excursionOpenedClass);
         excursions[excursionId].classList.add(excursionOpenedClass);
+        openedExcursion = excursions[excursionId];
 
         if (isMobile) {
             scrollToExcursion();
@@ -80,12 +80,12 @@
 
     function scrollToList(animate = true) {
         scrollTo(0, animate);
-        excursionOpened = false;
+        excursionIsVisible = false;
     }
 
     function scrollToExcursion(animate = true) {
         scrollTo(excursionsPage.clientWidth, animate);
-        excursionOpened = true;
+        excursionIsVisible = true;
     }
 
     for (let i = 0; i < backButtons.length; i++) {
