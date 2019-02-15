@@ -11,7 +11,10 @@
     <div class="wrapper">
         <header class="header">
             <div class="header-main">
-                <img class="header-main__logo" src="{% static "img/logo.png" %}" alt="Логотип" width="100">
+                <div class="header-main__logo logo">
+                    <object class="logo__img" type="image/svg+xml" data="{% static "img/logo.svg" %}"></object>
+                    <div class="logo__title">Пеший<br><span class="logo__title-city">Екатеринбург</span></div>
+                </div>
                 <div class="header-main__menu-button menu-button">
                     <span class="menu-button__line"></span>
                     <span class="menu-button__line"></span>

@@ -17,7 +17,6 @@
 }
 
 .header {
-    padding: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,16 +27,32 @@
 }
 
 .header-main__logo {
+    display: flex;
+    align-items: center;
+
     flex-shrink: 0;
     flex-grow: 0;
-    max-width: 100px;
+}
+
+.logo__img {
+    width: 100px;
+}
+
+.logo__title {
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.logo__title-city {
+    color: seagreen;
 }
 
 .menu-button {
     display: none;
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
     cursor: pointer;
     border-radius: 50%;
     transition: 0.6s border-radius, 0.4s background;
@@ -323,10 +338,6 @@
 @media (max-width: 768px) {
     .header {
         display: block;
-    }
-
-    .header-main__logo {
-        width: 15%;
     }
 
     .header-main {
