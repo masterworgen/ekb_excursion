@@ -365,7 +365,17 @@ const openPage = (function () {
      * Иниалицирует слайдер
      */
     function init() {
-        for (let i = 0; i < slides.length; i++) {
+
+        let slidesCount = slides.length;
+        if (slidesCount === 0) {
+            return;
+        }
+
+        console.log(performance.now());
+        updateSizes();
+
+        for (let i = 0; i < slidesCount; i++) {
+
             let control = document.createElement("span");
             control.className = "slider__control";
             control.dataset.slideId = i.toString();
@@ -393,7 +403,6 @@ const openPage = (function () {
             const newScrollX = -sliderWidth * currentSlide;
             scrollTo(newScrollX);
         });
-        updateSizes();
 
         if (autoScroll) {
             interval = setInterval(nextSlide, autoScrollTime);
