@@ -71,18 +71,30 @@ const openPage = (function () {
     const contentContainer = document.querySelector(".content");
     const menuItems = document.querySelectorAll(".menu__item");
 
+    function executeScripts(node) {
+        let head = document.querySelector("head");
+        let scripts = contentContainer.querySelectorAll("script");
+        for (let i = 0; i < scripts.length; i++) {
+            let scriptElem = document.createElement("script");
+            scriptElem.src = scripts[i].src;
+            head.append(scriptElem);
+            scriptElem.remove();
+        }
+    }
+
     return function (url, addToHistory = true) {
         fetch(url + addQueryParams({content: true}))
             .then(function (response) {
                 return response.text();
             })
             .then(function (body) {
-                contentContainer.innerHTML = body;
-                inputsManager.initInputs();
-
                 if (addToHistory) {
                     history.pushState(null, null, url);
                 }
+                
+                contentContainer.innerHTML = body;
+                executeScripts(contentContainer);
+                inputsManager.initInputs();
             });
     };
 })();
