@@ -336,6 +336,39 @@
     color: #aaa;
 }
 
+.back-button {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.back-button__line {
+    position: absolute;
+    background: seagreen;
+    height: 3px;
+    left: 5px;
+    width: 40%;
+}
+
+.back-button__line:nth-child(1) {
+    top: 14px;
+    transform: rotate(-45deg);
+}
+
+.back-button__line:nth-child(2) {
+    top: 19px;
+    left: 8px;
+    right: 10px;
+    width: auto;
+}
+
+.back-button__line:nth-child(3) {
+    bottom: 14px;
+    transform: rotate(45deg);
+}
+
 .excursions {
     margin-top: 10px;
     display: flex;
@@ -359,6 +392,13 @@
 
 .excursions-list {
     /*background: #3e999f;*/
+}
+
+.excursions-list__title {
+    display: none;
+    margin-left: 10px;
+    margin-top: 0;
+    color: seagreen;
 }
 
 .excursions-list-item {
@@ -395,7 +435,11 @@
     display: block;
 }
 
-.excursion__title {
+.excursion-header__back-button {
+    display: none;
+}
+
+.excursion-header__title {
     margin: 0;
 }
 
@@ -461,5 +505,40 @@
 
     .feedback__comments {
         width: 100%;
+    }
+
+    .excursions {
+        overflow: hidden;
+    }
+
+    .excursions__list {
+        flex-basis: 100%;
+    }
+
+    .excursions__container {
+        flex-basis: 100%;
+        flex-shrink: 0;
+    }
+
+    .excursions-list__title {
+        display: block;
+    }
+
+    .excursions-list-item_opened {
+        background: initial;
+    }
+
+    .excursions-list-item__title,
+    .excursions-list-item_opened .excursions-list-item__title {
+        color: black;
+    }
+
+    .excursion-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .excursion-header__back-button {
+        display: block;
     }
 }
