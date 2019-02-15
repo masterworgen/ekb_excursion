@@ -243,11 +243,11 @@ const openPage = (function () {
      * @param {boolean} [animate=false] Нужно ли анимировать прокрутку
      */
     function scrollTo(px, animate = false) {
-        if (currentAnimation !== undefined) {
-            currentAnimation.cancel();
-        }
-
         if (animate) {
+            if (currentAnimation !== undefined) {
+                currentAnimation.cancel();
+            }
+
             const maxDuration = 1000;
             const diff = px - scrollX;
             let tmpScrollX = scrollX;
@@ -264,6 +264,7 @@ const openPage = (function () {
                 },
                 onCancel: function () {
                     scrollX = tmpScrollX;
+                    console.log("canceled");
                 },
                 onEnd: function () {
                     scrollX = px;
