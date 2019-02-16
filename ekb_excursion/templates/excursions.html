@@ -1,0 +1,90 @@
+{% load staticfiles %}
+<div class="excursions">
+    <div class="excursions__list excursions-list">
+        <h1 class="excursions-list__title">Экскурсии</h1>
+        <div class="excursions-list__item excursions-list-item excursions-list-item_opened" data-excurtion-id="0">
+            <div class="excursions-list-item__title excursion-title">Экскурсия куда-то</div>
+        </div>
+        <div class="excursions-list__item excursions-list-item" data-excurtion-id="1">
+            <div class="excursions-list-item__title excursion-title">Ещё одна экскурсия</div>
+        </div>
+        <div class="excursions-list__item excursions-list-item" data-excurtion-id="2">
+            <div class="excursions-list-item__title excursion-title">Самая крутая экскурсия!</div>
+        </div>
+    </div>
+    <div class="excursions__container excursions-container">
+        <div class="excursions-container__excursion excursion excursion_opened">
+            <div class="excursion__header excursion-header">
+                <div class="excursion-header__back-button back-button">
+                    <span class="back-button__line"></span>
+                    <span class="back-button__line"></span>
+                    <span class="back-button__line"></span>
+                </div>
+                <h1 class="excursion-header__title excursion-title">Экскурсия куда-то</h1>
+            </div>
+            <span class="excursion__price">$100 за человека</span>
+            <div class="excursion__description text">
+                <p class="text__paragraph">
+                    Очен интересная экскурсия!
+                </p>
+                <p class="text__paragraph">
+                    Тут было ещё много разных слов
+                </p>
+                <p class="text__paragraph">
+                    В общем, приходите
+                </p>
+            </div>
+            <div class="excursion__map">Здесь могла быть ваша карта</div>
+        </div>
+        <div class="excursions-container__excursion excursion">
+            <div class="excursion__header excursion-header">
+                <div class="excursion-header__back-button back-button">
+                    <span class="back-button__line"></span>
+                    <span class="back-button__line"></span>
+                    <span class="back-button__line"></span>
+                </div>
+                <h1 class="excursion-header__title excursion-title">Ещё одна экскурсия</h1>
+            </div>
+            <span class="excursion__price">100₽ за человека</span>
+            <div class="excursion__description text">
+                <p class="text__paragraph">
+                    Очередная экскурсия
+                </p>
+                <p class="text__paragraph">
+                    Не хуже и не лучше других
+                </p>
+                <p class="text__paragraph">
+                    Тут было ещё много разных слов
+                </p>
+                <p class="text__paragraph">
+                    В общем, приходите
+                </p>
+            </div>
+            <div class="excursion__map">Здесь могла быть ваша карта</div>
+        </div>
+        <div class="excursions-container__excursion excursion">
+            <div class="excursion__header excursion-header">
+                <div class="excursion-header__back-button back-button">
+                    <span class="back-button__line"></span>
+                    <span class="back-button__line"></span>
+                    <span class="back-button__line"></span>
+                </div>
+                <h1 class="excursion-header__title excursion-title">Самая крутая экскурсия!</h1>
+            </div>
+            <span class="excursion__price">Бесценно (для всего остального есть MasterCard)</span>
+            <div class="excursion__description text">
+                <p class="text__paragraph">
+                    А это самая крутая экскурсия, какую можно себе представить
+                </p>
+                <p class="text__paragraph">
+                    Тут было ещё много разных слов
+                </p>
+                <p class="text__paragraph">
+                    В общем, приходите
+                </p>
+            </div>
+            <div class="excursion__map">Здесь могла быть ваша карта</div>
+        </div>
+    </div>
+    <script src="{% static "js/excursions.js" %}"></script>
+</div>

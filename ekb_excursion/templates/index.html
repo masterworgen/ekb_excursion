@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+    <script src="{% static "js/animation.js" %}"></script>
+    <title>Пеший Екатеринбург</title>
+</head>
+<body class="page">
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-main">
+                <img class="header-main__logo" alt="Логотип" src="{% static "img/logo.svg" %}">
+                <div class="header-main__menu-button menu-button">
+                    <span class="menu-button__line"></span>
+                    <span class="menu-button__line"></span>
+                    <span class="menu-button__line"></span>
+                </div>
+            </div>
+            <nav class="menu-container">
+                <ul class="menu">
+                    <li class="menu__item"><a class="menu__link" href="/news/">Новости</a></li>
+                    <li class="menu__item"><a class="menu__link" href="/excursions/">Экскурсии</a></li>
+                    <li class="menu__item"><a class="menu__link" href="/feedback/">Отзывы</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="slider">
+            <div class="slider__slides-container">
+                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/3049.jpeg" %}"></div>
+                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/Ekaterinburg Russia 1423988876.jpg" %}"></div>
+                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/ekb.jpg" %}"></div>
+                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.jpg" %}"></div>
+                <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.webp" %}"></div>
+            </div>
+            <div class="slider__button slider__button_prev"></div>
+            <div class="slider__button slider__button_next"></div>
+            <div class="slider__controls-container"></div>
+        </div>
+        <div class="content">
+            {% if template %}
+                {% include template %}
+            {% endif %}
+        </div>
+        <footer class="footer">
+            <address class="footer__contacts contacts">
+                <div class="contacts__title">Экскурсии по Екатеринбургу</div>
+                <a href="mailto:ekb-exc@gmail.com" class="contacts__contact">ekb-exc@gmail.com</a>
+                <a href="tel:+73435553535" class="contacts__contact">+7(343)555-35-35</a>
+            </address>
+            <div class="footer__social-media social-media">
+                <a class="social-media__button social-media-button" href="https://vk.com/">
+                    <img class="social-media-button__img" alt="ВКонтаке" src="{% static "img/vk.svg" %}">
+                </a>
+                <a class="social-media__button social-media-button" href="https://t.me/">
+                    <img class="social-media-button__img" alt="Телеграм" src="{% static "img/telegram.svg" %}">
+                </a>
+                <a class="social-media__button social-media-button" href="https://facebook.com/">
+                    <img class="social-media-button__img" alt="Facebook" src="{% static "img/facebook.svg" %}">
+                </a>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static "js/main.js" %}"></script>
+</body>
+</html>
