@@ -1,15 +1,17 @@
+{% load staticfiles %}
 <div class="feedback">
     <h1 class="feedback__title">Отзывы</h1>
     <form class="feedback__form form clearfix">
+        {% csrf_token %}
         <div class="form__input input">
             <input id="name-field" name="name" class="input__field">
             <label for="name-field" class="input__label">Имя</label>
         </div>
         <div class="form__input input input_textarea">
-            <textarea id="text-field" name="name" class="input__field"></textarea>
+            <textarea id="text-field" name="text" class="input__field"></textarea>
             <label for="text-field" class="input__label">Комментарий</label>
         </div>
-        <div class="form__button button">Отправить</div>
+        <div class="form__button button send-feedback">Отправить</div>
     </form>
     <div class="feedback__comments comments">
         {% for field in fb %}
@@ -20,4 +22,5 @@
             </div>
         {% endfor %}
     </div>
+    <script src="{% static "js/feedback.js" %}"></script>
 </div>
