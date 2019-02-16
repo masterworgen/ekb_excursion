@@ -45,13 +45,19 @@
         }
     }
 
+    function closeExcursion() {
+        if (isMobile) {
+            scrollToList();
+        }
+    }
+
     function scrollTo(x, animate = false) {
         if (animate) {
             if (currentAnimation !== undefined) {
                 currentAnimation.cancel();
             }
             const scrollLeft = excursionsPage.scrollLeft;
-            const maxDuration = 300;
+            const maxDuration = 200;
             const diff = x - scrollLeft;
 
             let duration = Math.floor(Math.abs(diff) / excursionsPage.clientWidth * maxDuration);
@@ -72,12 +78,6 @@
         }
     }
 
-    function closeExcursion() {
-        if (isMobile) {
-            scrollToList();
-        }
-    }
-
     function scrollToList(animate = true) {
         scrollTo(0, animate);
         excursionIsVisible = false;
@@ -95,4 +95,57 @@
     for (let i = 0; i < excursionsButtons.length; i++) {
         excursionsButtons[i].addEventListener("click", openExcursion);
     }
+
+    (function () {
+        let startTouchX = -1;
+        let startTouchY = -1;
+        let totalMovedX = 0;
+        let totalMovedY = 0;
+
+        let startScrollLeft = -1;
+
+        excursionsPage.addEventListener("touchstart", function (event) {
+            if (!excursionIsVisible) {
+                return;
+            }
+
+            const touch = event.touches[0];
+            startTouchX = touch.screenX;
+            startTouchY = touch.screenY;
+
+            startScrollLeft = excursionsPage.scrollLeft;
+        });
+
+        excursionsPage.addEventListener("touchmove", function (event) {
+            if (!excursionIsVisible) {
+                return;
+            }
+
+            const touch = event.touches[0];
+            totalMovedX = touch.screenX - startTouchX;
+            totalMovedY = touch.screenY - startTouchY;
+
+            if (Math.abs(totalMovedX) > Math.abs(totalMovedY)) {
+                excursionsPage.scrollLeft = startScrollLeft - totalMovedX;
+            }
+        });
+
+        excursionsPage.addEventListener("touchend", function (event) {
+            if (!excursionIsVisible) {
+                return;
+            }
+
+            // Докрутить
+            if (Math.abs(totalMovedX) > Math.abs(totalMovedY) && totalMovedX > excursionsPage.clientWidth/6) {
+                scrollToList();
+            } else {
+                scrollToExcursion();
+            }
+
+            // Сбросить значения
+            startTouchX = -1;
+            startScrollLeft = -1;
+            totalMovedX = 0;
+        })
+    })();
 })();
