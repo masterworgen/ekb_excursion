@@ -489,6 +489,42 @@ html {
     display: inline-block;
 }
 
+.message {
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden;
+    transition: margin 1s, padding 1s, max-height 1s;
+}
+
+.message_hidden {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.message_type_info {
+    background: seagreen;
+    color: white;
+}
+
+.message_type_error {
+    background: #cc1111;
+    color: white;
+}
+
+.message__title {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.message__text {
+    display: block;
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 768px) {
     .header {
         display: block;
