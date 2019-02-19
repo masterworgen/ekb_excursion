@@ -43,6 +43,9 @@
         if (isMobile) {
             scrollToExcursion();
         }
+
+        // Нужно, чтобы не сработало событие click, если сработало событие touchend
+        event.preventDefault();
     }
 
     function closeExcursion() {
@@ -88,12 +91,13 @@
         excursionIsVisible = true;
     }
 
-    for (let i = 0; i < backButtons.length; i++) {
-        backButtons[i].addEventListener("click", closeExcursion);
+    for (let i = 0; i < excursionsButtons.length; i++) {
+        excursionsButtons[i].addEventListener("touchend", openExcursion);
+        excursionsButtons[i].addEventListener("click", openExcursion);
     }
 
-    for (let i = 0; i < excursionsButtons.length; i++) {
-        excursionsButtons[i].addEventListener("click", openExcursion);
+    for (let i = 0; i < backButtons.length; i++) {
+        backButtons[i].addEventListener("click", closeExcursion);
     }
 
     (function () {
