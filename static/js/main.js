@@ -66,38 +66,29 @@ function addQueryParams(params, url) {
     return url + (url.includes("?") ? "&":"?") + paramsString;
 }
 
-const openPage = (function () {
-    "use strict";
-    const contentContainer = document.querySelector(".content");
-    const menuItems = document.querySelectorAll(".menu__item");
+function openPage(url, contentContainer, addToHistory = true) {
+    let head = document.querySelector("head");
 
-    function executeScripts(node) {
-        let head = document.querySelector("head");
-        let scripts = contentContainer.querySelectorAll("script");
-        for (let i = 0; i < scripts.length; i++) {
-            let scriptElem = document.createElement("script");
-            scriptElem.src = scripts[i].src;
-            head.append(scriptElem);
-            scriptElem.remove();
-        }
-    }
+    fetch(url + addQueryParams({content: true}))
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            if (addToHistory) {
+                history.pushState(null, null, url);
+            }
 
-    return function (url, addToHistory = true) {
-        fetch(url + addQueryParams({content: true}))
-            .then(function (response) {
-                return response.text();
-            })
-            .then(function (body) {
-                if (addToHistory) {
-                    history.pushState(null, null, url);
-                }
-                
-                contentContainer.innerHTML = body;
-                executeScripts(contentContainer);
-                inputsManager.initInputs();
-            });
-    };
-})();
+            contentContainer.innerHTML = body;
+            let scripts = contentContainer.querySelectorAll("script");
+            for (let i = 0; i < scripts.length; i++) {
+                let scriptElem = document.createElement("script");
+                scriptElem.src = scripts[i].src;
+                head.append(scriptElem);
+            }
+
+            inputsManager.initInputs();
+        });
+}
 
 /* Навигация */
 (function () {
@@ -148,12 +139,14 @@ const openPage = (function () {
     window.addEventListener("resize", initMenu);
     initMenu();
 
+    let contentContainer = document.querySelector(".content");
+
     /**
      * Обрабатывает событие навигации по истории
      */
     window.onpopstate = function () {
         if (location.pathname !== "") {
-            openPage(location.pathname, false);
+            openPage(location.pathname, contentContainer, false);
         }
     };
 
@@ -168,7 +161,7 @@ const openPage = (function () {
 
         if (url !== "") {
             console.log(`Opening.. ${url}`);
-            openPage(url);
+            openPage(url, contentContainer);
         }
     }
 
