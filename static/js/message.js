@@ -11,7 +11,7 @@ function Message({type, title, text, classList, duration}) {
     let messageElement = document.createElement("div");
     let messageClassList = messageElement.classList;
 
-    messageClassList.add("message", "message_hidden");
+    messageClassList.add("message");
 
     if (typeof type === "string") {
         messageClassList.add("message_type_" + type);
@@ -71,10 +71,16 @@ function Message({type, title, text, classList, duration}) {
         if (messageElement.parentElement === null) {
             let body = document.querySelector("body");
             body.append(messageElement);
+
             height = messageElement.clientHeight;
+            height += parseInt(getComputedStyle(messageElement).paddingTop);
+            height += parseInt(getComputedStyle(messageElement).paddingBottom);
+
             messageElement.remove();
         } else {
             height = messageElement.clientHeight;
+            height += parseInt(getComputedStyle(messageElement).paddingTop);
+            height += parseInt(getComputedStyle(messageElement).paddingBottom);
         }
 
         messageElement.style.position = null;
@@ -88,6 +94,8 @@ function Message({type, title, text, classList, duration}) {
     this.height = getHeight();
     this.duration = duration || 0;
 
+    // Скрыть сообщение
+    messageClassList.add("message_hidden");
     messageElement.style.maxHeight = 0 + "px";
 }
 

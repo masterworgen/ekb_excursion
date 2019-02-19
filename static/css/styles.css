@@ -490,6 +490,7 @@ html {
 }
 
 .message {
+    box-sizing: border-box;
     border-radius: 5px;
     padding: 10px;
     overflow: hidden;
