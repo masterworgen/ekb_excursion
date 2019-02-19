@@ -4,21 +4,22 @@
     <form class="feedback__form form clearfix">
         {% csrf_token %}
         <div class="form__input input">
-            <input id="name-field" name="name" class="input__field">
-            <label for="name-field" class="input__label">Имя</label>
+            <input id="feedback__name-field" name="name" class="input__field" required>
+            <label for="feedback__name-field" class="input__label">Имя</label>
         </div>
         <div class="form__input input input_textarea">
-            <textarea id="text-field" name="text" class="input__field"></textarea>
-            <label for="text-field" class="input__label">Комментарий</label>
+            <textarea id="feedback__text-field" name="text" class="input__field" required></textarea>
+            <label for="feedback__text-field" class="input__label">Комментарий</label>
         </div>
-        <label class="form__button button send-feedback">Отправить</label>
+        <label class="form__button button send-feedback" for="feedback__submit">Отправить</label>
+        <input id="feedback__submit" type="submit" hidden>
     </form>
     <div class="feedback__comments comments">
-        {% for field in fb %}
+        {% for feedback in fb %}
             <div class="comments__comment comment">
-                <span class="comment__author">{{ field.name }}</span>
-                <p class="comment__text">{{ field.text }}</p>
-                <span class="comment__date">{{ field.date_create}}</span>
+                <span class="comment__author">{{ feedback.name }}</span>
+                <p class="comment__text">{{ feedback.text }}</p>
+                <span class="comment__date">{{ feedback.date_create}}</span>
             </div>
         {% endfor %}
     </div>

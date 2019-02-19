@@ -6,7 +6,18 @@
     let sendButton = form.querySelector(".send-feedback");
     let comments = feedback.querySelector(".feedback__comments");
 
-    sendButton.addEventListener("click", function () {
+    function clearFields() {
+        for (let i = 0; i < formFields.length; i++) {
+            let field = formFields[i];
+            let event = new Event("input");
+
+            field.value = "";
+            field.dispatchEvent(event);
+        }
+    }
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
         let formData = new FormData();
 
         for (let i = 0; i < formFields.length; i++) {
@@ -45,6 +56,8 @@
                 });
                 message.insertAfter(form).show();
             }
+
+            clearFields();
         }).catch(function () {
             message = new Message({
                 type: Message.TYPE_ERROR,
