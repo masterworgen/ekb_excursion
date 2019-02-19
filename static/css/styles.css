@@ -197,6 +197,7 @@ html {
 
 .slider__slides-container {
     display: flex;
+    overflow: hidden;
     position: absolute;
 }
 

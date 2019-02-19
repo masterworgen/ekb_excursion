@@ -207,7 +207,7 @@ function openPage(url, contentContainer, addToHistory = true) {
             slideNumber += slides.length;
         }
 
-        const newScrollX = -sliderWidth * slideNumber;
+        const newScrollX = sliderWidth * slideNumber;
         scrollTo(newScrollX, true);
 
         controls[currentSlide].classList.remove("slider__control_active");
@@ -241,7 +241,7 @@ function openPage(url, contentContainer, addToHistory = true) {
                 currentAnimation.cancel();
             }
 
-            const maxDuration = 1000;
+            const maxDuration = 600;
             const diff = px - scrollX;
             let tmpScrollX = scrollX;
 
@@ -253,7 +253,8 @@ function openPage(url, contentContainer, addToHistory = true) {
             currentAnimation = new Animation({
                 draw: function(passedTime, duration) {
                     tmpScrollX = scrollX + Math.floor(diff * passedTime/duration);
-                    slidesContainer.style.transform = "translate(" + tmpScrollX + "px)";
+                    // slidesContainer.style.transform = "translate(" + tmpScrollX + "px)";
+                    slidesContainer.scrollLeft = tmpScrollX;
                 },
                 onCancel: function () {
                     scrollX = tmpScrollX;
@@ -268,7 +269,8 @@ function openPage(url, contentContainer, addToHistory = true) {
             currentAnimation.start();
         } else {
             scrollX = px;
-            slidesContainer.style.transform = "translate(" + scrollX + "px)";
+            // slidesContainer.style.transform = "translate(" + scrollX + "px)";
+            slidesContainer.scrollLeft = scrollX;
         }
     }
 
@@ -328,8 +330,9 @@ function openPage(url, contentContainer, addToHistory = true) {
         const moveX = (touch.screenX - lastTouchX);
         lastTouchX = touch.screenX;
         totalMoveX += moveX;
+        console.log(totalMoveX);
 
-        scrollBy(Math.floor(moveX));
+        scrollBy(Math.floor(-moveX));
     }
 
     /**
@@ -337,7 +340,7 @@ function openPage(url, contentContainer, addToHistory = true) {
      * @param {TouchEvent} event
      */
     function touchEnd(event) {
-        if (scrollX > 0 || scrollX < -sliderWidth * (slides.length - 1)) {
+        if (scrollX < 0 || scrollX > sliderWidth * (slides.length - 1)) {
             setSlide(currentSlide);
         } else if (totalMoveX > sliderWidth/6) {
             prevSlide();
@@ -359,7 +362,7 @@ function openPage(url, contentContainer, addToHistory = true) {
      */
     function updateSizes() {
         sliderWidth = slider.clientWidth;
-        slidesContainer.style.width = (slides.length * sliderWidth) + "px";
+        slidesContainer.style.width = sliderWidth + "px";
         for (let i = 0; i < slides.length; i++) {
             let slide = slides[i];
             slide.style.width = sliderWidth + "px";
@@ -407,7 +410,7 @@ function openPage(url, contentContainer, addToHistory = true) {
         window.addEventListener("resize", function () {
             updateSizes();
 
-            const newScrollX = -sliderWidth * currentSlide;
+            const newScrollX = sliderWidth * currentSlide;
             scrollTo(newScrollX);
         });
 
