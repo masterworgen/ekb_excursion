@@ -278,6 +278,11 @@ html {
     margin: 0 auto;
 }
 
+.feedback__message {
+    width: 70%;
+    margin: 20px auto;
+}
+
 .feedback__comments {
     width: 70%;
     margin: 0 auto;
@@ -559,6 +564,10 @@ html {
     }
 
     .feedback__form {
+        width: 100%;
+    }
+
+    .feedback__message {
         width: 100%;
     }
 
