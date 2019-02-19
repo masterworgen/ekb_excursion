@@ -43,9 +43,6 @@
         if (isMobile) {
             scrollToExcursion();
         }
-
-        // Нужно, чтобы не сработало событие click, если сработало событие touchend
-        event.preventDefault();
     }
 
     function closeExcursion() {
@@ -92,7 +89,6 @@
     }
 
     for (let i = 0; i < excursionsButtons.length; i++) {
-        excursionsButtons[i].addEventListener("touchend", openExcursion);
         excursionsButtons[i].addEventListener("click", openExcursion);
     }
 
