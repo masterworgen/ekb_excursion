@@ -442,7 +442,27 @@ html {
 }
 
 .excursion__price {
-    color: #a0a0a0;
+    color: gray;
+}
+
+.price__paragraph {
+    margin: 0.5em 0;
+}
+
+.text__title {
+    color: seagreen;
+}
+
+.text__paragraph {
+    line-height: 1.8em;
+}
+
+.text__slider {
+    width: 100%;
+}
+
+.text__image {
+    width: 100%;
 }
 
 /* Заглушка карты */

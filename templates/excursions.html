@@ -3,13 +3,13 @@
     <div class="excursions__list excursions-list">
         <h1 class="excursions-list__title">Экскурсии</h1>
         <div class="excursions-list__item excursions-list-item excursions-list-item_opened" data-excurtion-id="0">
-            <div class="excursions-list-item__title excursion-title">Экскурсия куда-то</div>
+            <div class="excursions-list-item__title excursion-title">Высоцкий сверху вниз</div>
         </div>
-        <div class="excursions-list__item excursions-list-item" data-excurtion-id="1">
-            <div class="excursions-list-item__title excursion-title">Ещё одна экскурсия</div>
+        <div class="excursions-list__item excursions-list-item" data-excurtion-id="0">
+            <div class="excursions-list-item__title excursion-title">По былому величию</div>
         </div>
-        <div class="excursions-list__item excursions-list-item" data-excurtion-id="2">
-            <div class="excursions-list-item__title excursion-title">Самая крутая экскурсия!</div>
+        <div class="excursions-list__item excursions-list-item" data-excurtion-id="0">
+            <div class="excursions-list-item__title excursion-title">Романовы: правда иди вымысел?</div>
         </div>
     </div>
     <div class="excursions__container excursions-container">
@@ -20,67 +20,38 @@
                     <span class="back-button__line"></span>
                     <span class="back-button__line"></span>
                 </div>
-                <h1 class="excursion-header__title excursion-title">Экскурсия куда-то</h1>
+                <h1 class="excursion-header__title excursion-title">Высоцкий сверху вниз</h1>
             </div>
-            <span class="excursion__price">$100 за человека</span>
+            <div class="excursion__price price">
+                <p class="price__paragraph">Входной билет — 350 рублей.</p>
+                <p class="price__paragraph">Льготный — 250 рублей: для учащихся с 12 лет, студентов, пенсионеров, ветеранов труда, многодетных семей, военных-срочников при предъявлении документа.</p>
+                <p class="price__paragraph">Льготный — 150 рублей: дети от 5 до 12 лет, инвалиды I, II, III группы, участники боевых действий при предъявлении документа.</p>
+                <p class="price__paragraph">Бесплатно: ветераны ВОВ, дети до 5 лет.</p>
+                <br>
+                <p class="price__paragraph">Цены билета в музей Высоцкого в Екатеринбурге</p>
+                <p class="price__paragraph">Полный билет – 200 руб., льготный – 100 руб.</p>
+                <p class="price__paragraph">Аудиогид – 100 руб.</p>
+                <p class="price__paragraph">Экскурсии: до 10 человек – 1000 руб., 11-20 чел. – 1500 руб., 21–30 чел. – 2000 руб., 31 чел. и более – 3000 руб.</p>
+                <p class="price__paragraph">Для посетителей обзорной площадки небоскреба «Высоцкий» вход свободный.</p>
+            </div>
             <div class="excursion__description text">
+                <h2 class="text__title">Описание</h2>
                 <p class="text__paragraph">
-                    Очен интересная экскурсия!
+                    Приглашаем Вас совершить пешую экскурсию в стольный уральский город - Екатеринбург.
+                    Жемчужина экскурсии - посещение смотровой площадки на 52 этаже бизнес-центра "Высоцкий",
+                    откуда открывается обзор на 25 км. вокруг.
                 </p>
+                <img class="text__image" src="{% static "img/1-1.jpg" %}" alt="">
                 <p class="text__paragraph">
-                    Тут было ещё много разных слов
-                </p>
-                <p class="text__paragraph">
-                    В общем, приходите
-                </p>
-            </div>
-            <div class="excursion__map">Здесь могла быть ваша карта</div>
-        </div>
-        <div class="excursions-container__excursion excursion">
-            <div class="excursion__header excursion-header">
-                <div class="excursion-header__back-button back-button">
-                    <span class="back-button__line"></span>
-                    <span class="back-button__line"></span>
-                    <span class="back-button__line"></span>
-                </div>
-                <h1 class="excursion-header__title excursion-title">Ещё одна экскурсия</h1>
-            </div>
-            <span class="excursion__price">100₽ за человека</span>
-            <div class="excursion__description text">
-                <p class="text__paragraph">
-                    Очередная экскурсия
-                </p>
-                <p class="text__paragraph">
-                    Не хуже и не лучше других
-                </p>
-                <p class="text__paragraph">
-                    Тут было ещё много разных слов
-                </p>
-                <p class="text__paragraph">
-                    В общем, приходите
-                </p>
-            </div>
-            <div class="excursion__map">Здесь могла быть ваша карта</div>
-        </div>
-        <div class="excursions-container__excursion excursion">
-            <div class="excursion__header excursion-header">
-                <div class="excursion-header__back-button back-button">
-                    <span class="back-button__line"></span>
-                    <span class="back-button__line"></span>
-                    <span class="back-button__line"></span>
-                </div>
-                <h1 class="excursion-header__title excursion-title">Самая крутая экскурсия!</h1>
-            </div>
-            <span class="excursion__price">Бесценно (для всего остального есть MasterCard)</span>
-            <div class="excursion__description text">
-                <p class="text__paragraph">
-                    А это самая крутая экскурсия, какую можно себе представить
-                </p>
-                <p class="text__paragraph">
-                    Тут было ещё много разных слов
-                </p>
-                <p class="text__paragraph">
-                    В общем, приходите
+                    Также мы посетим музей Высоцкого,
+                    где воссоздан гостиничный номер, в котором проживал поэт на гастролях.
+                    Вы сможете увидеть письма, редкие фотографии из семейного архива
+                    и даже личный "Мерседес" В.Высоцкого. Здесь мы погрузимся в атмосферу
+                    нашей страны советского периода, и, конечно, в мир песен, стихов и
+                    творчества Владимира Высоцкого. Ни на одной открытке и фотографии нет
+                    такого фантастического вида, который откроется перед вами из панорам «Высоцкого»:
+                    оторвавшись от земли, поднявшись над суетой земной жизни, насладитесь видами прекрасной
+                    столицы Урала - города номер один для тех, кто его строит, создает и любит всем сердцем!
                 </p>
             </div>
             <div class="excursion__map">Здесь могла быть ваша карта</div>
