@@ -11,3 +11,9 @@ class Feedback(models.Model):
     date_create = models.DateTimeField(auto_now_add=True)
     text = models.TextField(blank=True)
     verification = models.BooleanField()
+
+
+class Excursions(models.Model):
+    name = models.CharField(max_length=50)
+    text = models.TextField(blank=True)
+    json = models.TextField(blank=True)
