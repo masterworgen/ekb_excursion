@@ -1,18 +1,12 @@
 (function () {
     "use strict";
-    let isMobile = window.matchMedia('(max-width: 768px)').matches;
+    let isMobile = false;
     let excursionIsVisible = false;
-
-    window.addEventListener("resize", function () {
-        isMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (isMobile && excursionIsVisible) {
-            scrollToExcursion(false);
-        }
-    });
 
     let currentAnimation;
 
     let excursionsPage = document.querySelector(".excursions");
+    let excursionsContainer = excursionsPage.querySelector(".excursions__container");
 
     let excursions = document.querySelectorAll(".excursion");
     let excursionOpenedClass = "excursion_opened";
@@ -23,6 +17,24 @@
     let openedExcursionButton = document.querySelector("." + excursionButtonOpenedClass);
 
     let backButtons = document.querySelectorAll(".back-button");
+
+    function resize() {
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        if (!isMobile) {
+            return;
+        }
+
+        if (excursionIsVisible) {
+            scrollToExcursion(false);
+            excursionsContainer.classList.remove("excursions__container_hidden");
+        } else {
+            excursionsContainer.classList.add("excursions__container_hidden");
+        }
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
 
     function openExcursion(event) {
         let clickedExcursionButton = event.currentTarget;
@@ -81,11 +93,13 @@
     function scrollToList(animate = true) {
         scrollTo(0, animate);
         excursionIsVisible = false;
+        excursionsContainer.classList.add("excursions__container_hidden");
     }
 
     function scrollToExcursion(animate = true) {
         scrollTo(excursionsPage.clientWidth, animate);
         excursionIsVisible = true;
+        excursionsContainer.classList.remove("excursions__container_hidden");
     }
 
     for (let i = 0; i < excursionsButtons.length; i++) {

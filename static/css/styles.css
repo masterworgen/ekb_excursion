@@ -619,6 +619,10 @@ html {
         flex-shrink: 0;
     }
 
+    .excursions__container_hidden {
+        max-height: 0;
+    }
+
     .excursions-list__title {
         display: block;
     }
