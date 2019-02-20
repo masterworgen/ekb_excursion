@@ -259,6 +259,10 @@ html {
     padding: 0 10px;
 }
 
+.news__title {
+    color: seagreen;
+}
+
 .new {
     /*background: rgba(0,0,0,0.4);*/
     margin: 20px 0;
@@ -274,6 +278,10 @@ html {
 
 .feedback {
     padding: 0 10px;
+}
+
+.feedback__title {
+    color: seagreen;
 }
 
 .feedback__form {
