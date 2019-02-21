@@ -15,7 +15,7 @@ class Feedback(models.Model):
     verification = models.BooleanField()
 
 
-class Excursions(models.Model):
+class Excursion(models.Model):
     name = models.CharField(max_length=50)
     text = RichTextUploadingField(blank=True, default='')
     json = RichTextField(blank=True, default='')
