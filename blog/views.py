@@ -37,6 +37,5 @@ def feedback(request):
         fb.verification = False
         fb.save()
         return HttpResponse("need_verification")
-
     fb = Feedback.objects.order_by("-date_create").filter(verification=True)
     return get_response(request, 'feedback.html', {"fb":fb})
