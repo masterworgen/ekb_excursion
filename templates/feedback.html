@@ -2,7 +2,7 @@
 <div class="feedback">
     <h1 class="feedback__title">Отзывы</h1>
     <form class="feedback__form form clearfix">
-        {% csrf_token %}
+        <div class="csrf-token">{% csrf_token %}</div>
         <div class="form__input input">
             <input id="feedback__name-field" name="name" class="input__field" required>
             <label for="feedback__name-field" class="input__label">Имя</label>
@@ -11,8 +11,8 @@
             <textarea id="feedback__text-field" name="text" class="input__field" required></textarea>
             <label for="feedback__text-field" class="input__label">Комментарий</label>
         </div>
-        <label class="form__button button send-feedback" for="feedback__submit">Отправить</label>
-        <input id="feedback__submit" type="submit" hidden>
+{#        <label class="form__button button send-feedback" for="feedback__submit">Отправить</label>#}
+        <input class="form__button button send-feedback" id="feedback__submit" type="submit" value="Отправить">
     </form>
     <div class="feedback__comments comments">
         {% for feedback in fb %}

@@ -14,8 +14,8 @@
     <div class="wrapper">
         <header class="header">
             <div class="header-main">
-                <a href="/">
-                    <img class="header-main__logo" alt="Логотип" src="{% static "img/logo.svg" %}">
+                <a class="header-main__logo logo" href="/">
+                    <img class="logo__image" alt="Логотип" src="{% static "img/logo.svg" %}">
                 </a>
                 <div class="header-main__menu-button menu-button">
                     <span class="menu-button__line"></span>
@@ -39,8 +39,8 @@
                 <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.jpg" %}"></div>
                 <div class="slider__slide"><img class="slider__image" alt="" src="{% static "img/s1200.webp" %}"></div>
             </div>
-            <div class="slider__button slider__button_prev"></div>
-            <div class="slider__button slider__button_next"></div>
+            <div class="slider__button slider__button_prev" tabindex="0"></div>
+            <div class="slider__button slider__button_next" tabindex="0"></div>
             <div class="slider__controls-container"></div>
         </div>
         <div class="content">

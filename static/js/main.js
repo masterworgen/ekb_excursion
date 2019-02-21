@@ -388,6 +388,7 @@ function openPage(url, contentContainer, addToHistory = true) {
 
             let control = document.createElement("span");
             control.className = "slider__control";
+            control.tabIndex = 0;
             control.dataset.slideId = i.toString();
             control.addEventListener("click", controlClick);
             controlsContainer.append(control);

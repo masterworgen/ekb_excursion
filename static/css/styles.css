@@ -43,12 +43,13 @@ html {
     justify-content: space-between;
 }
 
-.header-main {
-    width: 15%;
+.logo {
+    display: block;
+    padding: 10px;
 }
 
-.header-main__logo {
-    margin: 10px;
+.logo__image {
+    display: block;
     width: 80px;
 }
 
@@ -181,7 +182,8 @@ html {
     transition: 0.4s;
 }
 
-.slider__button:hover {
+.slider__button:hover,
+.slider__button:focus {
     opacity: 1;
 }
 

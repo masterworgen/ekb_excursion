@@ -2,7 +2,7 @@
     let feedback = document.querySelector(".feedback");
 
     let form = feedback.querySelector("form");
-    let formFields = form.querySelectorAll("input,textarea");
+    let formFields = form.querySelectorAll(".csrf-token>input,.input__field");
     let sendButton = form.querySelector(".send-feedback");
     let comments = feedback.querySelector(".feedback__comments");
 
