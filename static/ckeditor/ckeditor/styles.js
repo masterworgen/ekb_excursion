@@ -135,3 +135,4 @@ CKEDITOR.stylesSet.add( 'default', [
 
 ] );
 
+CKEDITOR.stylesSet.add( 'empty', []);

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from blog.models import Blog, Feedback
+from blog.models import Blog, Feedback, Excursion
 
 
 def get_response(request, template, params):
@@ -26,7 +26,8 @@ def news(request, topic_id=None):
 
 
 def excursions(request):
-    return get_response(request, "excursions.html", {})
+    excursions_list = Excursion.objects.all()
+    return get_response(request, "excursions.html", {"excursions": excursions_list})
 
 
 def feedback(request):

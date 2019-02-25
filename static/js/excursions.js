@@ -43,14 +43,18 @@
         }
 
         let excursionId = Number(clickedExcursionButton.dataset.excurtionId);
+        //history.pushState()
 
-        openedExcursionButton.classList.remove(excursionButtonOpenedClass);
+        if (openedExcursionButton !== null) {
+            openedExcursionButton.classList.remove(excursionButtonOpenedClass);
+        }
         clickedExcursionButton.classList.add(excursionButtonOpenedClass);
         openedExcursionButton = clickedExcursionButton;
 
+        let excursion = document.getElementById("excursion_id_" + excursionId);
         openedExcursion.classList.remove(excursionOpenedClass);
-        excursions[excursionId].classList.add(excursionOpenedClass);
-        openedExcursion = excursions[excursionId];
+        excursion.classList.add(excursionOpenedClass);
+        openedExcursion = excursion;
 
         if (isMobile) {
             scrollToExcursion();

@@ -457,20 +457,13 @@ html {
     color: gray;
 }
 
-.price__paragraph {
-    margin: 0.5em 0;
-}
-
-.text__title {
+.excursion h3 {
     color: seagreen;
 }
 
-.text__paragraph {
-    line-height: 1.8em;
-}
-
-.text__slider {
+.excursion img {
     width: 100%;
+    height: auto;
 }
 
 .text__image {
