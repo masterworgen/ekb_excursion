@@ -3,14 +3,17 @@
     <div class="excursions__list excursions-list">
         <h1 class="excursions-list__title">Экскурсии</h1>
         {% for excursion in excursions %}
-            <div class="excursions-list__item excursions-list-item" data-excurtion-id="{{ excursion.id }}">
+            <div class="excursions-list__item excursions-list-item" data-excursion-id="{{ excursion.id }}">
                 <div class="excursions-list-item__title excursion-title">{{ excursion.name }}</div>
             </div>
         {% endfor %}
     </div>
     <div class="excursions__container excursions-container">
+        <div class="excursions-container__message pick-excursion-message">
+            Выберете экскурсию в списке слева
+        </div>
         {% for excursion in excursions %}
-            <div class="excursions-container__excursion excursion excursion_opened" id="excursion_id_{{ excursion.id }}">
+            <div class="excursions-container__excursion excursion" data-excursion-id="{{ excursion.id }}">
                 <div class="excursion__header excursion-header">
                     <div class="excursion-header__back-button back-button">
                         <span class="back-button__line"></span>

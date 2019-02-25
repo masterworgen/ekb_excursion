@@ -6,17 +6,24 @@
     let currentAnimation;
 
     let excursionsPage = document.querySelector(".excursions");
+    let pickMes = excursionsPage.querySelector(".pick-excursion-message");
     let excursionsContainer = excursionsPage.querySelector(".excursions__container");
 
-    let excursions = document.querySelectorAll(".excursion");
+    let excursions = excursionsPage.querySelectorAll(".excursion");
     let excursionOpenedClass = "excursion_opened";
-    let openedExcursion = document.querySelector("." + excursionOpenedClass);
+    let openedExcursion = excursionsPage.querySelector("." + excursionOpenedClass);
 
-    let excursionsButtons = document.querySelectorAll(".excursions-list-item");
+    let excursionsButtons = excursionsPage.querySelectorAll(".excursions-list-item");
     let excursionButtonOpenedClass = "excursions-list-item_opened";
-    let openedExcursionButton = document.querySelector("." + excursionButtonOpenedClass);
+    let openedExcursionButton = excursionsPage.querySelector("." + excursionButtonOpenedClass);
 
-    let backButtons = document.querySelectorAll(".back-button");
+    let backButtons = excursionsPage.querySelectorAll(".back-button");
+
+    window.addEventListener("popstate", function (event) {
+        if (location.pathname !== "" && event.state.excursion) {
+            openExcursionFromUrl();
+        }
+    });
 
     function resize() {
         isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -36,23 +43,47 @@
     window.addEventListener("resize", resize);
     resize();
 
-    function openExcursion(event) {
-        let clickedExcursionButton = event.currentTarget;
-        if (!clickedExcursionButton.classList.contains("excursions-list-item")) {
-            return;
+    function openExcursionFromUrl() {
+        let match = location.pathname.match(/excursion\/(\d+)/);
+        if (match !== null) {
+            openExcursion(Number(match[1]), false);
+        }
+    }
+
+    function openExcursion(id, addToHistory = true) {
+        pickMes.style.display = "none";
+
+        let excursionId = 0;
+        let excursionButton;
+        if (typeof id === "number") {
+            excursionId = id;
+            excursionButton = excursionsPage.querySelector(".excursions-list-item[data-excursion-id='" + excursionId + "']")
+        } else {
+            excursionButton = id.currentTarget;
+            if (!excursionButton.classList.contains("excursions-list-item")) {
+                return;
+            }
+
+            excursionId = Number(excursionButton.dataset.excursionId);
         }
 
-        let excursionId = Number(clickedExcursionButton.dataset.excurtionId);
-        //history.pushState()
+        if (addToHistory) {
+            history.pushState({excursion: true}, null, "/excursion/" + excursionId);
+            console.log("/excursion/" + excursionId);
+        }
 
         if (openedExcursionButton !== null) {
             openedExcursionButton.classList.remove(excursionButtonOpenedClass);
         }
-        clickedExcursionButton.classList.add(excursionButtonOpenedClass);
-        openedExcursionButton = clickedExcursionButton;
 
-        let excursion = document.getElementById("excursion_id_" + excursionId);
-        openedExcursion.classList.remove(excursionOpenedClass);
+        excursionButton.classList.add(excursionButtonOpenedClass);
+        openedExcursionButton = excursionButton;
+
+        if (openedExcursion !== null) {
+            openedExcursion.classList.remove(excursionOpenedClass);
+        }
+
+        let excursion = excursionsPage.querySelector(".excursion[data-excursion-id='" + excursionId + "']")
         excursion.classList.add(excursionOpenedClass);
         openedExcursion = excursion;
 
@@ -113,6 +144,8 @@
     for (let i = 0; i < backButtons.length; i++) {
         backButtons[i].addEventListener("click", closeExcursion);
     }
+
+    openExcursionFromUrl();
 
     (function () {
         let startTouchX = -1;

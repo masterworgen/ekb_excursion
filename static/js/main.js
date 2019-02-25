@@ -75,7 +75,7 @@ function openPage(url, contentContainer, addToHistory = true) {
         })
         .then(function (body) {
             if (addToHistory) {
-                history.pushState(null, null, url);
+                history.pushState({page: true}, null, url);
             }
 
             contentContainer.innerHTML = body;
@@ -144,11 +144,11 @@ function openPage(url, contentContainer, addToHistory = true) {
     /**
      * Обрабатывает событие навигации по истории
      */
-    window.onpopstate = function () {
-        if (location.pathname !== "") {
+    window.addEventListener("popstate", function (event) {
+        if (location.pathname !== "" && event.state.page) {
             openPage(location.pathname, contentContainer, false);
         }
-    };
+    });
 
     /**
      * Обработка клика по ссылке

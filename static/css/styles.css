@@ -490,6 +490,11 @@ html {
     padding-top: 56.25%;
 }
 
+.pick-excursion-message {
+    text-align: center;
+    color: grey;
+}
+
 .footer {
     margin-top: 10px;
     display: flex;

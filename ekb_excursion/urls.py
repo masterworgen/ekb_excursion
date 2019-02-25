@@ -27,5 +27,6 @@ urlpatterns = [
     path('news/', views.news),
     url(r'^news/(?P<topic_id>\d+)/$', views.news, name='news'),
     path('excursions/', views.excursions),
+    url(r'^excursion/\d+', views.excursions),
     path('feedback/', views.feedback),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
