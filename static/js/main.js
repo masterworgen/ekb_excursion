@@ -4,6 +4,28 @@ let inputsManager = (function () {
 
     let inputHasTextClass = "input__field_has-text";
     let inputIsListeningClass = "input__field_is-listening";
+    let inputInvalidValueClass = "input__field_invalid-value";
+
+    /**
+     * Валидация значения поля
+     * @param {HTMLInputElement} input
+     * @return {boolean}
+     */
+    function isValidField(input) {
+        if (input.value === "") {
+            return true;
+        }
+
+        if (input.type === "number") {
+            return isNaN(input.value);
+        } else if (input.type === "tel") {
+            let tel = input.value;
+            tel = tel.replace(/\+|\s|-|\(|\)/g, "");
+            return /^\d*$/.test(tel);
+        }
+
+        return true
+    }
 
     /**
      * Обработка ввода текста в поле ввода (input)
@@ -17,6 +39,12 @@ let inputsManager = (function () {
             field.classList.remove(inputHasTextClass);
         } else {
             field.classList.add(inputHasTextClass);
+        }
+
+        if (isValidField(field)) {
+            field.classList.remove(inputInvalidValueClass);
+        } else {
+            field.classList.add(inputInvalidValueClass);
         }
     }
 

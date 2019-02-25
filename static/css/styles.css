@@ -354,6 +354,22 @@ html {
     color: seagreen;
 }
 
+.input__error {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 0.8em;
+
+    color: red;
+
+    transition: 0.4s;
+    opacity: 0;
+}
+
+.input__field_invalid-value ~ .input__error.input__error_type_invalid-value {
+    opacity: 1;
+}
+
 .input_textarea .input__field {
     resize: vertical;
 }
