@@ -4,12 +4,11 @@ from blog.models import Blog, Feedback, Excursion
 
 
 def get_response(request, template, params):
-    if request.method == "GET":
-        if "content" in request.GET and request.GET["content"]:
-            return render(request, template, params)
-        else:
-            params["template"] = template
-            return render(request, "index.html", params)
+    if request.method == "GET" and "content" in request.GET and request.GET["content"]:
+        return render(request, template, params)
+    else:
+        params["template"] = template
+        return render(request, "index.html", params)
 
 
 def index(request):

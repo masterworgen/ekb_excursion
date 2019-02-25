@@ -19,6 +19,14 @@
 
     let backButtons = excursionsPage.querySelectorAll(".back-button");
 
+    let formContainer = excursionsPage.querySelector(".form-container");
+    let formContainerOpenedClass = "form-container_opened";
+
+    let form = excursionsPage.querySelector(".excursion-form");
+    let formFields = form.querySelectorAll("input");
+    let formCancelButton = form.querySelector(".excursion-form__cancel");
+    let joinExcursionButtons = excursionsPage.querySelectorAll(".join-excursion-button");
+
     window.addEventListener("popstate", function (event) {
         if (location.pathname !== "" && event.state.excursion) {
             openExcursionFromUrl();
@@ -52,6 +60,7 @@
 
     function openExcursion(id, addToHistory = true) {
         pickMes.style.display = "none";
+        formContainer.classList.remove(formContainerOpenedClass);
 
         let excursionId = 0;
         let excursionButton;
@@ -92,11 +101,84 @@
         }
     }
 
-    function closeExcursion() {
-        if (isMobile) {
-            scrollToList();
+    // function closeExcursion() {
+    //     if (isMobile) {
+    //         scrollToList();
+    //     }
+    // }
+
+    function openJoinForm(event) {
+        let button = event.target;
+        let excursionName = button.dataset.excursionName;
+        let excursionId = Number(button.dataset.excursionId);
+
+        if (openedExcursion !== null) {
+            openedExcursion.classList.remove(excursionOpenedClass);
+        }
+        openedExcursion = null;
+
+        formContainer.classList.add(formContainerOpenedClass);
+        form.querySelector(".excursion-form__excursion-name").textContent = `"${excursionName}"`;
+        form.querySelector(".excursion-form__excursion-id-field").value = excursionId;
+
+        formCancelButton.onclick = function () {
+            openExcursion(excursionId, false);
         }
     }
+
+    function clearFields() {
+        for (let i = 0; i < formFields.length; i++) {
+            let field = formFields[i];
+
+            if (!field.classList.contains("input__field")) {
+                continue;
+            }
+
+            let event = new Event("input");
+
+            field.value = "";
+            field.dispatchEvent(event);
+        }
+    }
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let formData = new FormData();
+
+        for (let i = 0; i < formFields.length; i++) {
+            let field = formFields[i];
+            formData.append(field.name, field.value);
+        }
+
+        let message;
+
+        fetch("/excursions/", {
+            method: "POST",
+            body: formData
+        }).then(function (response) {
+            console.log(response.status);
+            message = new Message({
+                type: Message.TYPE_INFO,
+                title: "Отправлено",
+                text: "Вы успешно записаны на экскурсию",
+                classList: "form-container__message",
+                duration: 10000
+            });
+            message.insertAfter(form).show();
+
+            clearFields();
+        }).catch(function () {
+            message = new Message({
+                type: Message.TYPE_ERROR,
+                title: "Ошибка",
+                text: ["Что-то пошло не так", "Пожалуйста, попробуйте позже"],
+                classList: "form-container__message",
+                duration: 10000
+            });
+            message.insertAfter(form).show();
+        })
+    });
 
     function scrollTo(x, animate = false) {
         if (animate) {
@@ -142,7 +224,11 @@
     }
 
     for (let i = 0; i < backButtons.length; i++) {
-        backButtons[i].addEventListener("click", closeExcursion);
+        backButtons[i].addEventListener("click", scrollToList);
+    }
+
+    for (let i = 0; i < joinExcursionButtons.length; i++) {
+        joinExcursionButtons[i].addEventListener("click", openJoinForm);
     }
 
     openExcursionFromUrl();

@@ -22,54 +22,45 @@
                     </div>
                     <h1 class="excursion-header__title excursion-title">{{ excursion.name }}</h1>
                 </div>
+                <div><button class="button join-excursion-button" data-excursion-id="{{ excursion.id }}" data-excursion-name="{{ excursion.name }}">Записаться</button></div>
                 {% autoescape off %}
                 {{ excursion.text }}
                 {% endautoescape %}
+                <div><button class="button join-excursion-button" data-excursion-id="{{ excursion.id }}" data-excursion-name="{{ excursion.name }}">Записаться на экскурсию "{{ excursion.name }}"</button></div>
             </div>
         {% endfor %}
-{#        <div class="excursions-container__excursion excursion excursion_opened">#}
-{#            <div class="excursion__header excursion-header">#}
-{#                <div class="excursion-header__back-button back-button">#}
-{#                    <span class="back-button__line"></span>#}
-{#                    <span class="back-button__line"></span>#}
-{#                    <span class="back-button__line"></span>#}
-{#                </div>#}
-{#                <h1 class="excursion-header__title excursion-title">Высоцкий сверху вниз</h1>#}
-{#            </div>#}
-{#            <div class="excursion__price price">#}
-{#                <p class="price__paragraph">Входной билет — 350 рублей.</p>#}
-{#                <p class="price__paragraph">Льготный — 250 рублей: для учащихся с 12 лет, студентов, пенсионеров, ветеранов труда, многодетных семей, военных-срочников при предъявлении документа.</p>#}
-{#                <p class="price__paragraph">Льготный — 150 рублей: дети от 5 до 12 лет, инвалиды I, II, III группы, участники боевых действий при предъявлении документа.</p>#}
-{#                <p class="price__paragraph">Бесплатно: ветераны ВОВ, дети до 5 лет.</p>#}
-{#                <br>#}
-{#                <p class="price__paragraph">Цены билета в музей Высоцкого в Екатеринбурге</p>#}
-{#                <p class="price__paragraph">Полный билет – 200 руб., льготный – 100 руб.</p>#}
-{#                <p class="price__paragraph">Аудиогид – 100 руб.</p>#}
-{#                <p class="price__paragraph">Экскурсии: до 10 человек – 1000 руб., 11-20 чел. – 1500 руб., 21–30 чел. – 2000 руб., 31 чел. и более – 3000 руб.</p>#}
-{#                <p class="price__paragraph">Для посетителей обзорной площадки небоскреба «Высоцкий» вход свободный.</p>#}
-{#            </div>#}
-{#            <div class="excursion__description text">#}
-{#                <h2 class="text__title">Описание</h2>#}
-{#                <p class="text__paragraph">#}
-{#                    Приглашаем Вас совершить пешую экскурсию в стольный уральский город - Екатеринбург.#}
-{#                    Жемчужина экскурсии - посещение смотровой площадки на 52 этаже бизнес-центра "Высоцкий",#}
-{#                    откуда открывается обзор на 25 км. вокруг.#}
-{#                </p>#}
-{#                <img class="text__image" src="{% static "img/1-1.jpg" %}" alt="">#}
-{#                <p class="text__paragraph">#}
-{#                    Также мы посетим музей Высоцкого,#}
-{#                    где воссоздан гостиничный номер, в котором проживал поэт на гастролях.#}
-{#                    Вы сможете увидеть письма, редкие фотографии из семейного архива#}
-{#                    и даже личный "Мерседес" В.Высоцкого. Здесь мы погрузимся в атмосферу#}
-{#                    нашей страны советского периода, и, конечно, в мир песен, стихов и#}
-{#                    творчества Владимира Высоцкого. Ни на одной открытке и фотографии нет#}
-{#                    такого фантастического вида, который откроется перед вами из панорам «Высоцкого»:#}
-{#                    оторвавшись от земли, поднявшись над суетой земной жизни, насладитесь видами прекрасной#}
-{#                    столицы Урала - города номер один для тех, кто его строит, создает и любит всем сердцем!#}
-{#                </p>#}
-{#            </div>#}
-{#            <div class="excursion__map">Здесь могла быть ваша карта</div>#}
-{#        </div>#}
+        <div class="excursions-container__form-container form-container">
+            <form class="excursions-container__form excursion-form form clearfix" method="post" action="/excursions/">
+
+                <div class="form__header excursion-header">
+                    <div class="excursion-header__back-button back-button">
+                        <span class="back-button__line"></span>
+                        <span class="back-button__line"></span>
+                        <span class="back-button__line"></span>
+                    </div>
+                    <h1 class="excursion-header__title excursion-title">Запись на экскурсию <span class="excursion-form__excursion-name"></span></h1>
+                </div>
+
+                {% csrf_token %}
+                <input class="excursion-form__excursion-id-field" hidden name="excursionId" value="">
+                <div class="form__input input">
+                    <input id="excursion-form__name-field" name="name" type="text" class="input__field" required>
+                    <label for="excursion-form__name-field" class="input__label">Имя</label>
+                </div>
+                <div class="form__input input">
+                    <input id="excursion-form__tel-field" name="tel" type="tel" class="input__field" required>
+                    <label for="excursion-form__tel-field" class="input__label">Номер телефона</label>
+                </div>
+                <div class="form__input input">
+                    <input id="excursion-form__email-field" name="email" type="email" class="input__field" required>
+                    <label for="excursion-form__email-field" class="input__label">Электронная почта</label>
+                </div>
+                <div>
+                    <input class="form__button button excursion-form__join" type="submit" value="Записаться">
+                    <button class="form__button button excursion-form__cancel">Отмена</button>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="{% static "js/excursions.js" %}"></script>
 </div>

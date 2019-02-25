@@ -301,6 +301,11 @@ html {
     margin: 0 auto;
 }
 
+.form__title {
+    color: seagreen;
+    font-size: 1.6em;
+}
+
 .form__input {
     margin-top: 20px;
 }
@@ -308,6 +313,10 @@ html {
 .form__button {
     margin-top: 20px;
     float: right;
+}
+
+.form__button:not(:first-child) {
+    margin-right: 10px;
 }
 
 .input {
@@ -493,6 +502,19 @@ html {
 .pick-excursion-message {
     text-align: center;
     color: grey;
+}
+
+.form-container {
+    padding: 0 10px;
+    display: none;
+}
+
+.form-container_opened {
+    display: block;
+}
+
+.form-container__message {
+    margin-top: 20px;
 }
 
 .footer {
