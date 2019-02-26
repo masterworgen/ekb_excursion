@@ -64,62 +64,8 @@ let inputsManager = (function () {
 })();
 inputsManager.initInputs();
 
-/**
- * Преобразует объект params в строку параметров url. Например, {c: "hello", lang: "ru"} станет "?c=hello&lang=ru"
- * @param {object} params Парамерты
- * @param {string} [url=""] URL, к которому нужно добавить параметры
- * @return {string}
- */
-function addQueryParams(params, url) {
-    "use strict";
-    if (url === undefined) {
-        url = "";
-    }
-    
-    const paramsKeys = Object.keys(params);
-    const paramsCount = paramsKeys.length;
-    let paramsString = "";
-
-    for (let i = 0; i < paramsCount; i++) {
-        let key = paramsKeys[i];
-        let param = `${key}=${params[key]}`;
-
-        if (paramsString === "") {
-            paramsString += param;
-        } else {
-            paramsString += '&' + param;
-        }
-    }
-
-    return url + (url.includes("?") ? "&":"?") + paramsString;
-}
-
-function openPage(url, contentContainer, addToHistory = true) {
-    let head = document.querySelector("head");
-
-    fetch(url + addQueryParams({content: true}))
-        .then(function (response) {
-            return response.text();
-        })
-        .then(function (body) {
-            if (addToHistory) {
-                history.pushState({page: true}, null, url);
-            }
-
-            contentContainer.innerHTML = body;
-            let scripts = contentContainer.querySelectorAll("script");
-            for (let i = 0; i < scripts.length; i++) {
-                let scriptElem = document.createElement("script");
-                scriptElem.src = scripts[i].src;
-                head.append(scriptElem);
-            }
-
-            inputsManager.initInputs();
-        });
-}
-
 /* Навигация */
-(function () {
+let navigation = (function () {
     "use strict";
 
     function initMenu() {
@@ -193,11 +139,74 @@ function openPage(url, contentContainer, addToHistory = true) {
         }
     }
 
-    let menuLinks = document.querySelectorAll(".menu__link");
-    for (let i = 0, linksCount = menuLinks.length; i < linksCount; i++) {
-        menuLinks[i].addEventListener("click", onLinkClick);
+    function initNavigationButtons() {
+        let links = document.querySelectorAll(".navigation-button_not-inited");
+        for (let i = 0, linksCount = links.length; i < linksCount; i++) {
+            links[i].addEventListener("click", onLinkClick);
+            links[i].classList.remove("navigation-button_not-inited");
+        }
+    }
+    initNavigationButtons();
+
+    return {
+        initNavigationButtons: initNavigationButtons
     }
 })();
+
+/**
+ * Преобразует объект params в строку параметров url. Например, {c: "hello", lang: "ru"} станет "?c=hello&lang=ru"
+ * @param {object} params Парамерты
+ * @param {string} [url=""] URL, к которому нужно добавить параметры
+ * @return {string}
+ */
+function addQueryParams(params, url) {
+    "use strict";
+    if (url === undefined) {
+        url = "";
+    }
+    
+    const paramsKeys = Object.keys(params);
+    const paramsCount = paramsKeys.length;
+    let paramsString = "";
+
+    for (let i = 0; i < paramsCount; i++) {
+        let key = paramsKeys[i];
+        let param = `${key}=${params[key]}`;
+
+        if (paramsString === "") {
+            paramsString += param;
+        } else {
+            paramsString += '&' + param;
+        }
+    }
+
+    return url + (url.includes("?") ? "&":"?") + paramsString;
+}
+
+function openPage(url, contentContainer, addToHistory = true) {
+    let head = document.querySelector("head");
+
+    fetch(url + addQueryParams({content: true}))
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            if (addToHistory) {
+                history.pushState({page: true}, null, url);
+            }
+
+            contentContainer.innerHTML = body;
+            let scripts = contentContainer.querySelectorAll("script");
+            for (let i = 0; i < scripts.length; i++) {
+                let scriptElem = document.createElement("script");
+                scriptElem.src = scripts[i].src;
+                head.append(scriptElem);
+            }
+
+            inputsManager.initInputs();
+            navigation.initNavigationButtons();
+        });
+}
 
 /* Слайдер */
 (function () {

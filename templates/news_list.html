@@ -7,7 +7,7 @@
                 <div class="new__date">{{ news_article.date_create | safe }}</div>
             </div>
             <p class="new__text">{% autoescape off %}{{ news_article.text }}{% endautoescape %}</p>
-            <a class="new__read-more-button button" href="/news/{{ news_article.id }}/">Читать далее</a>
+            <a class="new__read-more-button button navigation-button navigation-button_not-inited" href="/news/{{ news_article.id }}/">Читать далее</a>
         </div>
     {% endfor %}
 </div>
