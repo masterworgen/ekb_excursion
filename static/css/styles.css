@@ -428,7 +428,6 @@ html {
 }
 
 .excursions {
-    margin-top: 10px;
     display: flex;
 }
 
@@ -451,7 +450,6 @@ html {
 .excursions-list__title {
     display: none;
     margin-left: 10px;
-    margin-top: 0;
     color: seagreen;
 }
 
@@ -468,6 +466,10 @@ html {
 
 .excursion_opened {
     display: block;
+}
+
+.excursion-header {
+    margin-top: 10px;
 }
 
 .excursion-header__back-button {
