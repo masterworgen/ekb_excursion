@@ -268,14 +268,28 @@ html {
 .new {
     /*background: rgba(0,0,0,0.4);*/
     margin: 20px 0;
+    padding: 0 10px;
 }
 
 .new__title {
     margin: 0;
 }
 
+.new__date {
+    color: #aaa;
+}
+
 .new__text {
     margin: 0.5em 0;
+}
+
+.new h3 {
+    color: seagreen;
+}
+
+.new img {
+    width: 100%;
+    height: auto;
 }
 
 .feedback {
