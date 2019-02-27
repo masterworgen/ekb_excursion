@@ -265,10 +265,13 @@ html {
     color: seagreen;
 }
 
+.article {
+    padding: 0 10px;
+}
+
 .new {
     /*background: rgba(0,0,0,0.4);*/
     margin: 20px 0;
-    padding: 0 10px;
 }
 
 .new__title {
