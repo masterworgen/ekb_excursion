@@ -11,11 +11,11 @@ class Blog(models.Model):
 class Feedback(models.Model):
     name = models.CharField(max_length=20)
     date_create = models.DateTimeField(auto_now_add=True)
-    text = RichTextUploadingField(blank=True, default='')
+    text = models.TextField(blank=True, default='')
     verification = models.BooleanField()
 
 
 class Excursion(models.Model):
     name = models.CharField(max_length=50)
     text = RichTextUploadingField(blank=True, default='')
-    json = RichTextField(blank=True, default='')
+    json = models.TextField(blank=True, default='')
