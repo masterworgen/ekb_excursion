@@ -1,7 +1,7 @@
 <div class="new">
     <div class="new__headline">
         <h2 class="new__title">{{ news_article.header | safe }}</h2>
-        <div class="new__date">{{ news_article.date_create | safe }}</div>
+        <div class="new__date">{{ news_article.date_create }}</div>
     </div>
     <p class="new__text">{% autoescape off %}{{ news_article.text }}{% endautoescape %}</p>
 </div>
