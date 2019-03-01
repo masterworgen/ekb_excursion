@@ -31,7 +31,7 @@ html {
     flex-grow: 0;
 }
 
-.content {
+.content-container {
     flex-basis: 100%;
     flex-grow: 1;
     flex-shrink: 1;
@@ -617,6 +617,23 @@ html {
 .message__text {
     display: block;
     margin-top: 10px;
+}
+
+.error {
+    padding: 0 10px;
+    display: none;
+}
+
+.error_shown {
+    display: block;
+}
+
+.error__title {
+    color: red;
+}
+
+.error__text {
+    color: #aaa;
 }
 
 @media screen and (max-width: 768px) {

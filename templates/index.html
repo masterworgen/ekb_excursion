@@ -43,10 +43,16 @@
             <div class="slider__button slider__button_next" tabindex="0"></div>
             <div class="slider__controls-container"></div>
         </div>
-        <div class="content">
-            {% if template %}
-                {% include template %}
-            {% endif %}
+        <div class="content-container">
+            <div class="content-container__error error">
+                <h1 class="error__title">Ошибка при загрузке</h1>
+                <span class="error__text">Проверьте подключение к Интернет или попробуйте позже</span>
+            </div>
+            <div class="content-container content">
+                {% if template %}
+                    {% include template %}
+                {% endif %}
+            </div>
         </div>
         <footer class="footer">
             <address class="footer__contacts contacts">

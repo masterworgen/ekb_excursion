@@ -113,7 +113,7 @@ let navigation = (function () {
     window.addEventListener("resize", initMenu);
     initMenu();
 
-    let contentContainer = document.querySelector(".content");
+    let contentContainer = document.querySelector(".content-container");
 
     /**
      * Обрабатывает событие навигации по истории
@@ -185,6 +185,8 @@ function addQueryParams(params, url) {
 
 function openPage(url, contentContainer, addToHistory = true) {
     let head = document.querySelector("head");
+    let contentElement = contentContainer.querySelector(".content");
+    let errorElement = contentContainer.querySelector(".error");
 
     fetch(url + addQueryParams({content: true}))
         .then(function (response) {
@@ -195,8 +197,8 @@ function openPage(url, contentContainer, addToHistory = true) {
                 history.pushState({page: true}, null, url);
             }
 
-            contentContainer.innerHTML = body;
-            let scripts = contentContainer.querySelectorAll("script");
+            contentElement.innerHTML = body;
+            let scripts = contentElement.querySelectorAll("script");
             for (let i = 0; i < scripts.length; i++) {
                 let scriptElem = document.createElement("script");
                 scriptElem.src = scripts[i].src;
@@ -205,6 +207,16 @@ function openPage(url, contentContainer, addToHistory = true) {
 
             inputsManager.initInputs();
             navigation.initNavigationButtons();
+
+            if (errorElement !== null) {
+                errorElement.classList.remove("error_shown");
+            }
+        })
+        .catch(function (error) {
+            if (errorElement !== null) {
+                errorElement.classList.add("error_shown");
+                contentElement.innerHTML = "";
+            }
         });
 }
 
