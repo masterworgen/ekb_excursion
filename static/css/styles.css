@@ -142,28 +142,36 @@
     text-align: center;
 
     font-family: sans-serif;
+    padding: 20px;
+    cursor: pointer;
 
     list-style: none;
     transition: 0.4s;
 }
 
-.menu__item:hover {
-    background: seagreen;
-}
-
 .menu__link {
-    display: block;
-    padding: 20px;
     box-sizing: border-box;
-    width: 100%;
 
+    position: relative;
     color: black;
     text-decoration: none;
     transition: 0.4s;
 }
 
-.menu__item:hover .menu__link {
-    color: white;
+.menu__link::before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    display: block;
+    width: 0;
+    height: 5px;
+    background: rgba(46, 139, 87, 0.6);
+    transition: 0.4s;
+}
+
+.menu__item:hover .menu__link::before {
+    width: 100%;
 }
 
 .button {
