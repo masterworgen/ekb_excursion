@@ -471,3 +471,40 @@ function openPage(url, contentContainer, addToHistory = true) {
 
     init();
 })();
+
+/* Красивый фон в sidebar */
+(function () {
+    let sidebar = document.querySelector('.sidebar');
+
+    if (sidebar === null) {
+        console.error('sidebar is null');
+        return;
+    }
+
+    let sidebarWidth = sidebar.clientWidth;
+    let sidebarHeight = sidebar.clientHeight;
+
+    window.addEventListener('resize', function () {
+        sidebarWidth = sidebar.clientWidth;
+        sidebarHeight = sidebar.clientHeight;
+    });
+
+    function moveBackground(x, y) {
+        let xPercents = (sidebarWidth/2 - x) / sidebarWidth * 100;
+        let yPercents = (sidebarHeight/2 - y) / sidebarHeight * 100;
+
+        let targetX = 50 - xPercents / 4;
+        let targetY = 50 - yPercents / 10;
+
+        sidebar.style.backgroundPositionX = targetX + '%';
+        sidebar.style.backgroundPositionY = targetY + '%';
+    }
+
+    sidebar.addEventListener('mousemove', function (event) {
+        moveBackground(event.clientX, event.clientY);
+    });
+
+     sidebar.addEventListener('mouseleave', function (event) {
+         moveBackground(sidebarWidth/2, sidebarHeight/2);
+     });
+})();
