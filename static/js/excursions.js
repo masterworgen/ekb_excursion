@@ -1,16 +1,13 @@
 (function () {
     "use strict";
-    let isMobile = false;
     let excursionIsVisible = false;
 
     let currentAnimation;
 
     let excursionsPage = document.querySelector(".excursions");
     let pickMes = excursionsPage.querySelector(".pick-excursion-message");
-    let excursionList = excursionsPage.querySelector(".excursions-list");
     let excursionsContainer = excursionsPage.querySelector(".excursions__container");
 
-    let excursions = excursionsPage.querySelectorAll(".excursion");
     let excursionOpenedClass = "excursion_opened";
     let openedExcursion = excursionsPage.querySelector("." + excursionOpenedClass);
 
@@ -35,12 +32,6 @@
     });
 
     function resize() {
-        isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-        if (!isMobile) {
-            return;
-        }
-
         if (excursionIsVisible) {
             scrollToExcursion(false);
             excursionsContainer.classList.remove("excursions__container_hidden");
@@ -93,25 +84,15 @@
             openedExcursion.classList.remove(excursionOpenedClass);
         }
 
-        let excursion = excursionsPage.querySelector(".excursion[data-excursion-id='" + excursionId + "']")
+        let excursion = excursionsPage.querySelector(".excursion[data-excursion-id='" + excursionId + "']");
         excursion.classList.add(excursionOpenedClass);
         openedExcursion = excursion;
 
-        if (isMobile) {
-            scrollToExcursion();
-        } else {
-            excursionsContainer.style.display = "block";
-            excursionList.style.display = "none";
-        }
+        scrollToExcursion();
     }
 
     function closeExcursion() {
-        if (isMobile) {
-            scrollToList();
-        } else {
-            excursionsContainer.style.display = "none";
-            excursionList.style.display = "block";
-        }
+        scrollToList();
     }
 
     function openJoinForm(event) {
@@ -274,7 +255,7 @@
             }
         });
 
-        excursionsPage.addEventListener("touchend", function (event) {
+        excursionsPage.addEventListener("touchend", function () {
             if (!excursionIsVisible) {
                 return;
             }
