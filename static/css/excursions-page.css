@@ -1,0 +1,145 @@
+@charset "UTF-8";
+.excursions {
+  display: flex;
+  overflow: hidden;
+}
+
+.excursions__list {
+  flex-basis: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.excursions__container {
+  display: block;
+  flex-basis: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.excursions-list__title {
+  display: block;
+  margin-left: 10px;
+  color: seagreen;
+}
+
+.excursions-list-item {
+  cursor: pointer;
+  display: flex;
+  padding: 10px;
+}
+
+.excursions-list-item__image {
+  background: url("/static/img/ekb.jpg") no-repeat no-repeat center/cover;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.excursions-list-item__image::after {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.excursions-list-item__text {
+  margin-left: 20px;
+}
+
+.excursions-list-item__title {
+  display: inline-block;
+  position: relative;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.excursions-list-item__description {
+  color: #aaaaaa;
+}
+
+.excursions-list-item__title::before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+  display: block;
+  width: 0;
+  height: 30%;
+  background: rgba(46, 139, 87, 0.6);
+  transition: 0.4s;
+}
+
+.excursions-list-item:hover .excursions-list-item__title::before {
+  width: 100%;
+}
+
+.excursion {
+  padding: 0 10px;
+  display: none;
+}
+
+.excursion_opened {
+  display: block;
+}
+
+.excursion-header {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.excursion-header__title {
+  margin: 0;
+}
+
+.excursion__price {
+  color: gray;
+}
+
+.excursion h3 {
+  color: seagreen;
+}
+
+.excursion img {
+  width: 100%;
+  height: auto;
+}
+
+/* Заглушка карты */
+.excursion__map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: gainsboro;
+  transition: 0.4s;
+}
+
+.excursion__map:hover {
+  background: lightgrey;
+}
+
+.excursion__map::after {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.excursions__container_hidden {
+  max-height: 0;
+}
+
+.excursion-header__back-button {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  .excursions-list-item {
+    transition: 0.4s;
+  }
+
+  .excursions-list-item__title {
+    transition: 0.4s;
+  }
+}
+
+/*# sourceMappingURL=excursions-page.css.map */
