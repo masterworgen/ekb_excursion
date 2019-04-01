@@ -7,6 +7,7 @@
 
     let excursionsPage = document.querySelector(".excursions");
     let pickMes = excursionsPage.querySelector(".pick-excursion-message");
+    let excursionList = excursionsPage.querySelector(".excursions-list");
     let excursionsContainer = excursionsPage.querySelector(".excursions__container");
 
     let excursions = excursionsPage.querySelectorAll(".excursion");
@@ -98,14 +99,20 @@
 
         if (isMobile) {
             scrollToExcursion();
+        } else {
+            excursionsContainer.style.display = "block";
+            excursionList.style.display = "none";
         }
     }
 
-    // function closeExcursion() {
-    //     if (isMobile) {
-    //         scrollToList();
-    //     }
-    // }
+    function closeExcursion() {
+        if (isMobile) {
+            scrollToList();
+        } else {
+            excursionsContainer.style.display = "none";
+            excursionList.style.display = "block";
+        }
+    }
 
     function openJoinForm(event) {
         let button = event.target;
@@ -224,7 +231,7 @@
     }
 
     for (let i = 0; i < backButtons.length; i++) {
-        backButtons[i].addEventListener("click", scrollToList);
+        backButtons[i].addEventListener("click", closeExcursion);
     }
 
     for (let i = 0; i < joinExcursionButtons.length; i++) {

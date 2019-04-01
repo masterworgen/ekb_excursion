@@ -485,32 +485,70 @@
     display: flex;
 }
 
-.excursion-title {
-    color: seagreen;
-    font-weight: bold;
-}
-
 .excursions__list {
     flex-basis: 30%;
-    flex-grow: 0;
+    flex-grow: 1;
     flex-shrink: 0;
 }
 
 .excursions__container {
+    display: none;
     flex-grow: 1;
     flex-shrink: 1;
 }
 
 .excursions-list__title {
-    display: none;
     margin-left: 10px;
     color: seagreen;
 }
 
 .excursions-list-item {
     cursor: pointer;
-    height: 40px;
+    display: flex;
     padding: 10px;
+}
+
+.excursions-list-item__image {
+    background: url("/static/img/ekb.jpg") no-repeat no-repeat center / cover;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.excursions-list-item__image::after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.excursions-list-item__text {
+    margin-left: 20px;
+}
+
+.excursions-list-item__title {
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.excursions-list-item__description {
+    color: #aaaaaa;
+}
+
+.excursions-list-item__title::before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    display: block;
+    width: 0;
+    height: 30%;
+    background: rgba(46, 139, 87, 0.6);
+    transition: 0.4s;
+}
+
+.excursions-list-item:hover .excursions-list-item__title::before {
+    width: 100%;
 }
 
 .excursion {
@@ -523,11 +561,9 @@
 }
 
 .excursion-header {
+    display: flex;
+    align-items: center;
     margin-top: 10px;
-}
-
-.excursion-header__back-button {
-    display: none;
 }
 
 .excursion-header__title {
@@ -747,6 +783,7 @@
     }
 
     .excursions__container {
+        display: block;
         flex-basis: 100%;
         flex-shrink: 0;
     }
@@ -761,11 +798,6 @@
 
     .excursions-list-item__title {
         color: black;
-    }
-
-    .excursion-header {
-        display: flex;
-        align-items: center;
     }
 
     .excursion-header__title {
@@ -792,17 +824,7 @@
         transition: 0.4s;
     }
 
-    .excursions-list-item:hover,
-    .excursions-list-item_opened {
-        background: seagreen;
-    }
-
     .excursions-list-item__title {
         transition: 0.4s;
-    }
-
-    .excursions-list-item:hover .excursions-list-item__title,
-    .excursions-list-item_opened .excursions-list-item__title {
-        color: white;
     }
 }

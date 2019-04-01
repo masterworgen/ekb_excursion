@@ -1,10 +1,14 @@
 {% load staticfiles %}
 <div class="excursions">
     <div class="excursions__list excursions-list">
-        <h1 class="excursions-list__title">Экскурсии</h1>
+        <h1 class="excursions-list__title page-title">Экскурсии</h1>
         {% for excursion in excursions %}
             <div class="excursions-list__item excursions-list-item" data-excursion-id="{{ excursion.id }}">
-                <div class="excursions-list-item__title excursion-title">{{ excursion.name }}</div>
+                <div class="excursions-list-item__image"></div>
+                <div class="excursions-list-item__text">
+                    <div class="excursions-list-item__title">{{ excursion.name }}</div>
+                    <div class="excursions-list-item__description">{{ excursion.name }}</div>
+                </div>
             </div>
         {% endfor %}
     </div>
