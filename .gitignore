@@ -1,6 +1,8 @@
+# node.js modules directory
+node_modules/
+
 # jsdoc documentation
 jsdoc/
-
 
 # JetBrains IDEs
 .idea/

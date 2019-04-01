@@ -1,0 +1,23 @@
+{
+  "name": "ekb_excursion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass src/scss:static/css",
+    "sass-watch": "sass --watch src/scss:static/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masterworgen/ekb_excursion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/masterworgen/ekb_excursion/issues"
+  },
+  "homepage": "https://github.com/masterworgen/ekb_excursion#readme",
+  "devDependencies": {
+    "node-sass": "^4.11.0"
+  }
+}
